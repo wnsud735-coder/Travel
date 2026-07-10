@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>다낭·호이안 2026</title>
+<style>
+:root{--bg:#f6f8f7;--card:#fff;--text:#1f2937;--muted:#6b7280;--accent:#0f766e;--soft:#ccfbf1;--line:#e5e7eb;}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--text);line-height:1.55}
+.hero{padding:34px 20px 26px;background:linear-gradient(135deg,#0f766e,#164e63);color:#fff}
+.hero h1{font-size:32px;margin:0 0 6px} .hero p{margin:0;opacity:.92}
+.quick{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
+.quick a{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:12px;border-radius:14px;font-weight:800;text-align:center}
+.nav{position:sticky;top:0;z-index:20;display:flex;gap:8px;overflow:auto;padding:10px 12px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav a{white-space:nowrap;text-decoration:none;color:var(--accent);background:var(--soft);padding:8px 12px;border-radius:999px;font-weight:800;font-size:14px}
+main{max-width:820px;margin:auto;padding:16px 14px 50px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 26px rgba(15,23,42,.05);margin-bottom:16px;overflow:hidden}
+.section-pad{padding:18px}
+.section-title{margin:0 0 12px;font-size:22px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.info-box{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fafafa}
+.info-box b{display:block;color:var(--accent);margin-bottom:3px}
+.day-head{padding:18px;background:#f0fdfa;display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.day-head span{font-size:14px;font-weight:900;color:var(--accent)} .day-head h2{margin:2px 0 2px;font-size:23px}
+.day-head p{margin:0;color:var(--muted)} .day-head button{border:0;background:#fff;color:var(--accent);font-weight:800;padding:9px 11px;border-radius:10px}
+.day-body{padding:14px}
+.place-card{padding:15px;border:1px solid var(--line);border-radius:15px;margin-bottom:12px}
+.place-card:last-child{margin-bottom:0}
+.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.time{color:var(--accent);font-weight:900} .tag{font-size:13px;color:var(--muted);background:#f3f4f6;padding:4px 8px;border-radius:999px}
+.place-card h3{margin:0 0 8px;font-size:18px} .place-card p{margin:5px 0;font-size:15px}
+.map-btn{display:inline-block;margin-top:9px;background:var(--accent);color:#fff;text-decoration:none;padding:10px 13px;border-radius:10px;font-weight:900}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.check-item{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.check-item input{width:20px;height:20px;accent-color:var(--accent)}
+.budget-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.budget-row:last-child{border-bottom:0}
+.emergency{background:#fff7ed;border-color:#fed7aa}
+.notice{background:#eff6ff;border-color:#bfdbfe}
+.small{font-size:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 18px 30px}
+@media(max-width:560px){.info-grid,.check-grid{grid-template-columns:1fr}.quick{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>DANANG 2026</h1>
+  <p>2026.08.22 ~ 08.27 · Hyatt Regency Danang</p>
+  <div class="quick">
+    <a href="#schedule">일정 보기</a>
+    <a href="#packing">준비물</a>
+    <a href="#budget">예산</a>
+    <a href="#emergency">응급정보</a>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#overview">여행정보</a>
+  <a href="#schedule">일정</a>
+  <a href="#food">맛집</a>
+  <a href="#packing">준비물</a>
+  <a href="#budget">예산</a>
+  <a href="#emergency">응급</a>
+</nav>
+
+<main>
+<section class="card section-pad" id="overview">
+  <h2 class="section-title">여행 한눈에 보기</h2>
+  <div class="info-grid">
+    <div class="info-box"><b>가는 편</b>에어서울 RS511<br>인천 20:55 출발</div>
+    <div class="info-box"><b>오는 편</b>티웨이 TW008<br>다낭 11:45 출발</div>
+    <div class="info-box"><b>숙소</b>하얏트 리젠시 다낭<br>논누억 비치</div>
+    <div class="info-box"><b>여행 스타일</b>오전 휴양<br>오후 맛집·카페·마사지</div>
+  </div>
+</section>
+
+<section class="card section-pad notice">
+  <h2 class="section-title">여행 원칙</h2>
+  <p>관광지 도장깨기보다 호텔에서 충분히 쉬고, 오후부터 맛집·카페·마사지 위주로 움직이는 일정이야. 한시장·성당·오행산·바나힐은 제외하고 롯데마트와 호이안을 중심으로 잡았어.</p>
+</section>
+
+<div id="schedule">
+
+    <section class="day card" id="day-0">
+      <div class="day-head">
+        <div><span>8/22 토요일</span><h2>다낭 도착</h2><p>심야 도착 · 체크인 · 휴식</p></div>
+        <button onclick="toggleDay(0)" id="btn-0">접기</button>
+      </div>
+      <div class="day-body" id="body-0">
+        <article class="place-card">
+          <div class="topline"><span class="time">23:40</span><span class="tag">공항</span></div>
+          <h3>다낭 국제공항</h3>
+          <p><b>이동</b> 입국·수하물 후 그랩으로 하얏트 이동</p>
+          <p><b>예상 비용</b> 180,000~260,000동</p>
+          <p><b>메모</b> 공항에서는 물 정도만 사고 바로 호텔로 이동.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%EB%8B%A4%EB%82%AD+%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%2C+Da+Nang+International+Airport%2C+Duy+Tan%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">도착 후</span><span class="tag">호텔</span></div>
+          <h3>하얏트 리젠시 다낭</h3>
+          <p><b>이동</b> 체크인 후 바로 휴식</p>
+          
+          <p><b>메모</b> 첫날은 무리하지 말고 푹 쉬기.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%ED%95%98%EC%96%8F%ED%8A%B8+%EB%A6%AC%EC%A0%A0%EC%8B%9C+%EB%8B%A4%EB%82%AD%2C+5+Truong+Sa%2C+Hoa+Hai%2C+Ngu+Hanh+Son%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        </div>
+    </section>
+    
+    <section class="day card" id="day-1">
+      <div class="day-head">
+        <div><span>8/23 일요일</span><h2>다낭 1일차</h2><p>피자 · 환전 · 카페 · 해산물 · 마사지</p></div>
+        <button onclick="toggleDay(1)" id="btn-1">접기</button>
+      </div>
+      <div class="day-body" id="body-1">
+        <article class="place-card">
+          <div class="topline"><span class="time">12:30</span><span class="tag">점심</span></div>
+          <h3>Pizza 4P&#x27;s Hoàng Văn Thụ</h3>
+          <p><b>이동</b> 하얏트에서 그랩 약 25~35분</p>
+          <p><b>예상 비용</b> 450,000~750,000동</p>
+          <p><b>메모</b> 하프앤하프 피자 + 부라타/치즈 메뉴 추천.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Pizza+4P%27s+Ho%C3%A0ng+V%C4%83n+Th%E1%BB%A5%2C+8+Hoang+Van+Thu%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">14:30</span><span class="tag">환전</span></div>
+          <h3>Soạn Hà Jewelry</h3>
+          <p><b>이동</b> Pizza 4P&#x27;s에서 도보 약 5~10분</p>
+          <p><b>예상 비용</b> 당일 환율 비교</p>
+          <p><b>메모</b> 주변 환전소와 비교 후 이용.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=So%E1%BA%A1n+H%C3%A0+Jewelry%2C+121+Tran+Phu%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">15:00</span><span class="tag">카페</span></div>
+          <h3>Cộng Cà Phê Bạch Đằng</h3>
+          <p><b>이동</b> 환전소에서 도보 약 5~10분</p>
+          <p><b>예상 비용</b> 45,000~80,000동</p>
+          <p><b>메모</b> 코코넛커피 또는 아메리카노.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%99ng+C%C3%A0+Ph%C3%AA+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+96-98+Bach+Dang%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">18:30</span><span class="tag">저녁</span></div>
+          <h3>MỘC Quán Seafood</h3>
+          <p><b>이동</b> 카페에서 그랩 약 10~15분</p>
+          <p><b>예상 비용</b> 700,000~1,500,000동</p>
+          <p><b>메모</b> 크레이피시 또는 랍스터 + 볶음밥/모닝글로리.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=M%E1%BB%98C+Qu%C3%A1n+Seafood%2C+26+To+Hien+Thanh%2C+Son+Tra%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">20:30</span><span class="tag">마사지</span></div>
+          <h3>Herbal Spa</h3>
+          <p><b>이동</b> MỘC에서 그랩 약 5~10분</p>
+          <p><b>예상 비용</b> 500,000~900,000동</p>
+          <p><b>메모</b> 60~90분 코스.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Herbal+Spa%2C+201+Duong+Dinh+Nghe%2C+Son+Tra%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        </div>
+    </section>
+    
+    <section class="day card" id="day-2">
+      <div class="day-head">
+        <div><span>8/24 월요일</span><h2>다낭 2일차</h2><p>리조트 휴양 · 롯데마트 · 프렌치</p></div>
+        <button onclick="toggleDay(2)" id="btn-2">접기</button>
+      </div>
+      <div class="day-body" id="body-2">
+        <article class="place-card">
+          <div class="topline"><span class="time">오전</span><span class="tag">휴양</span></div>
+          <h3>하얏트 리젠시 다낭</h3>
+          <p><b>이동</b> 조식 후 수영장·해변</p>
+          <p><b>예상 비용</b> 호텔 식음료 별도</p>
+          <p><b>메모</b> 점심은 호텔에서 가볍게.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%ED%95%98%EC%96%8F%ED%8A%B8+%EB%A6%AC%EC%A0%A0%EC%8B%9C+%EB%8B%A4%EB%82%AD%2C+5+Truong+Sa%2C+Hoa+Hai%2C+Ngu+Hanh+Son%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">15:00</span><span class="tag">쇼핑</span></div>
+          <h3>LOTTE Mart Đà Nẵng</h3>
+          <p><b>이동</b> 하얏트에서 그랩 약 20~30분</p>
+          <p><b>예상 비용</b> 300,000~1,000,000동</p>
+          <p><b>메모</b> 베트남 커피·과자·라면·선물.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=LOTTE+Mart+%C4%90%C3%A0+N%E1%BA%B5ng%2C+6+Nai+Nam%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">19:00</span><span class="tag">프렌치 저녁</span></div>
+          <h3>Le Rendez-Vous</h3>
+          <p><b>이동</b> 롯데마트에서 그랩 약 15~25분</p>
+          <p><b>예상 비용</b> 900,000~1,600,000동</p>
+          <p><b>메모</b> 스타터 1 + 고기 메인 1 + 디저트.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Le+Rendez-Vous%2C+26+Nguyen+Cao+Luyen%2C+Son+Tra%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        </div>
+    </section>
+    
+    <section class="day card" id="day-3">
+      <div class="day-head">
+        <div><span>8/25 화요일</span><h2>호이안 1일차</h2><p>카페 · 올드타운 · 현지식 · 야시장</p></div>
+        <button onclick="toggleDay(3)" id="btn-3">접기</button>
+      </div>
+      <div class="day-body" id="body-3">
+        <article class="place-card">
+          <div class="topline"><span class="time">16:00</span><span class="tag">카페</span></div>
+          <h3>Faifo Coffee</h3>
+          <p><b>이동</b> 하얏트에서 차량 약 30~45분</p>
+          <p><b>예상 비용</b> 50,000~90,000동</p>
+          <p><b>메모</b> 루프톱 뷰 카페.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Faifo+Coffee%2C+130+Tran+Phu%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">17:00</span><span class="tag">산책</span></div>
+          <h3>호이안 올드타운</h3>
+          <p><b>이동</b> 카페에서 도보</p>
+          <p><b>예상 비용</b> 대부분 무료</p>
+          <p><b>메모</b> 골목과 강변 위주로 천천히.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%ED%98%B8%EC%9D%B4%EC%95%88+%EC%98%AC%EB%93%9C%ED%83%80%EC%9A%B4%2C+Hoi+An+Ancient+Town%2C+Minh+An%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">19:00</span><span class="tag">저녁</span></div>
+          <h3>Morning Glory Original</h3>
+          <p><b>이동</b> 올드타운 내 도보</p>
+          <p><b>예상 비용</b> 300,000~600,000동</p>
+          <p><b>메모</b> 까오러우 + 화이트로즈 또는 고기 메뉴.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Morning+Glory+Original%2C+106+Nguyen+Thai+Hoc%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">20:30</span><span class="tag">야경</span></div>
+          <h3>Nguyễn Hoàng 야시장</h3>
+          <p><b>이동</b> 식당에서 도보 약 10분</p>
+          <p><b>예상 비용</b> 100,000~300,000동</p>
+          <p><b>메모</b> 혼잡한 구간에서 소지품 주의.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Nguy%E1%BB%85n+Ho%C3%A0ng+%EC%95%BC%EC%8B%9C%EC%9E%A5%2C+Nguyen+Hoang+Night+Market%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        </div>
+    </section>
+    
+    <section class="day card" id="day-4">
+      <div class="day-head">
+        <div><span>8/26 수요일</span><h2>호이안 2일차</h2><p>미꽝 · 카페 · 산책 · 마지막 저녁</p></div>
+        <button onclick="toggleDay(4)" id="btn-4">접기</button>
+      </div>
+      <div class="day-body" id="body-4">
+        <article class="place-card">
+          <div class="topline"><span class="time">14:00</span><span class="tag">점심</span></div>
+          <h3>Mì Quảng Ông Hai</h3>
+          <p><b>이동</b> 하얏트에서 차량 약 30~45분</p>
+          <p><b>예상 비용</b> 40,000~80,000동</p>
+          <p><b>메모</b> 닭고기 미꽝(Mì Quảng Gà) 추천.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=M%C3%AC+Qu%E1%BA%A3ng+%C3%94ng+Hai%2C+6A+Truong+Minh+Luong%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">15:30</span><span class="tag">카페</span></div>
+          <h3>Ren Rứa Cafe</h3>
+          <p><b>이동</b> 미꽝집에서 그랩 약 5~10분</p>
+          <p><b>예상 비용</b> 45,000~90,000동</p>
+          <p><b>메모</b> 아메리카노 또는 시그니처 커피.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Ren+R%E1%BB%A9a+Cafe%2C+Hem+144+Nguyen+Truong+To%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">16:30</span><span class="tag">산책</span></div>
+          <h3>호이안 올드타운</h3>
+          <p><b>이동</b> 카페에서 도보 또는 짧은 그랩</p>
+          
+          <p><b>메모</b> 전날 못 본 골목 위주.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%ED%98%B8%EC%9D%B4%EC%95%88+%EC%98%AC%EB%93%9C%ED%83%80%EC%9A%B4%2C+Hoi+An+Ancient+Town%2C+Minh+An%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        
+        <article class="place-card">
+          <div class="topline"><span class="time">19:00</span><span class="tag">마지막 저녁</span></div>
+          <h3>Aubergine49 Restaurant</h3>
+          <p><b>이동</b> 올드타운에서 그랩 약 5~10분</p>
+          <p><b>예상 비용</b> 900,000~1,700,000동</p>
+          <p><b>메모</b> 스타터 + 고기 메인/파스타 + 디저트.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Aubergine49+Restaurant%2C+49A+Ly+Thai+To%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        </div>
+    </section>
+    
+    <section class="day card" id="day-5">
+      <div class="day-head">
+        <div><span>8/27 목요일</span><h2>귀국</h2><p>조식 · 공항 이동 · 출국</p></div>
+        <button onclick="toggleDay(5)" id="btn-5">접기</button>
+      </div>
+      <div class="day-body" id="body-5">
+        <article class="place-card">
+          <div class="topline"><span class="time">08:30~09:00</span><span class="tag">출국</span></div>
+          <h3>다낭 국제공항</h3>
+          <p><b>이동</b> 하얏트에서 그랩 약 25~35분</p>
+          <p><b>예상 비용</b> 180,000~260,000동</p>
+          <p><b>메모</b> 11:45 출국편 기준.</p>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%EB%8B%A4%EB%82%AD+%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%2C+Da+Nang+International+Airport%2C+Duy+Tan%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">Google Maps 열기</a>
+        </article>
+        </div>
+    </section>
+    
+</div>
+
+<section class="card section-pad" id="food">
+  <h2 class="section-title">맛집 핵심 추천</h2>
+  <div class="info-grid">
+    <div class="info-box"><b>Pizza 4P's</b>하프앤하프 + 부라타</div>
+    <div class="info-box"><b>MỘC Seafood</b>크레이피시/랍스터 + 볶음밥</div>
+    <div class="info-box"><b>Le Rendez-Vous</b>스타터 + 고기 메인 + 디저트</div>
+    <div class="info-box"><b>Morning Glory</b>까오러우 + 화이트로즈</div>
+    <div class="info-box"><b>Mì Quảng Ông Hai</b>닭고기 미꽝</div>
+    <div class="info-box"><b>Aubergine49</b>스타터 + 고기/파스타 + 디저트</div>
+  </div>
+</section>
+
+<section class="card section-pad" id="hotel">
+  <h2 class="section-title">하얏트 리젠시 공략</h2>
+  <p><b>오전:</b> 조식 → 객실 휴식 → 수영장·해변</p>
+  <p><b>점심:</b> 외출이 늦는 날은 호텔에서 가볍게</p>
+  <p><b>컨시어지:</b> 호이안 셔틀·택시·식당 예약 문의</p>
+  <p><b>복귀:</b> 늦은 시간에는 그랩 차량번호와 탑승 위치 확인</p>
+</section>
+
+<section class="card section-pad" id="packing">
+  <h2 class="section-title">준비물 체크리스트</h2>
+  <p class="small">체크 상태는 이 기기에 저장돼.</p>
+  <div class="check-grid"><label class="check-item"><input type="checkbox" data-key="pack-0"><span>여권</span></label><label class="check-item"><input type="checkbox" data-key="pack-1"><span>항공권·호텔 예약 확인</span></label><label class="check-item"><input type="checkbox" data-key="pack-2"><span>트래블로그 카드</span></label><label class="check-item"><input type="checkbox" data-key="pack-3"><span>현금·환전</span></label><label class="check-item"><input type="checkbox" data-key="pack-4"><span>eSIM</span></label><label class="check-item"><input type="checkbox" data-key="pack-5"><span>충전기</span></label><label class="check-item"><input type="checkbox" data-key="pack-6"><span>보조배터리</span></label><label class="check-item"><input type="checkbox" data-key="pack-7"><span>멀티어댑터</span></label><label class="check-item"><input type="checkbox" data-key="pack-8"><span>상비약</span></label><label class="check-item"><input type="checkbox" data-key="pack-9"><span>통풍약</span></label><label class="check-item"><input type="checkbox" data-key="pack-10"><span>감기약</span></label><label class="check-item"><input type="checkbox" data-key="pack-11"><span>선크림</span></label><label class="check-item"><input type="checkbox" data-key="pack-12"><span>선글라스</span></label><label class="check-item"><input type="checkbox" data-key="pack-13"><span>수영복</span></label><label class="check-item"><input type="checkbox" data-key="pack-14"><span>샌들</span></label><label class="check-item"><input type="checkbox" data-key="pack-15"><span>여벌 옷</span></label><label class="check-item"><input type="checkbox" data-key="pack-16"><span>우산</span></label></div>
+</section>
+
+<section class="card section-pad" id="budget">
+  <h2 class="section-title">예상 예산</h2>
+  <div class="budget-row"><span>식사·카페</span><b>약 500~900만동</b></div>
+  <div class="budget-row"><span>Grab</span><b>약 100~180만동</b></div>
+  <div class="budget-row"><span>마사지</span><b>약 50~90만동</b></div>
+  <div class="budget-row"><span>쇼핑</span><b>개인차</b></div>
+  <div class="budget-row"><span>총 현금 목표</span><b>약 1,200만동</b></div>
+</section>
+
+<section class="card section-pad emergency" id="emergency">
+  <h2 class="section-title">응급·건강 메모</h2>
+  <p><b>건강:</b> 통풍약·상비약은 원래 포장과 함께 보관하고, 더위에 탈수되지 않게 물을 자주 마셔.</p>
+  <p><b>병원/약국:</b> 급하면 호텔 컨시어지에 가장 가까운 국제병원·24시간 약국을 요청.</p>
+  <p><b>여권 분실:</b> 현지 경찰 신고 후 대한민국 영사콜센터 또는 주베트남 대한민국 공관에 연락.</p>
+  <p><b>주의:</b> 긴급전화와 공관 연락처는 출발 직전에 최신 번호로 다시 확인.</p>
+</section>
+
+<section class="card section-pad">
+  <h2 class="section-title">여행 기록</h2>
+  <p>가장 맛있었던 음식: ____________________</p>
+  <p>가장 좋았던 장소: ______________________</p>
+  <p>다시 가고 싶은 곳: _____________________</p>
+  <p>이번 여행 한 줄: _______________________</p>
+</section>
+</main>
+
+<footer>Safari에서 공유 → 홈 화면에 추가하면 앱처럼 쓸 수 있어.</footer>
+
+<script>
+function toggleDay(i){
+  const body=document.getElementById('body-'+i);
+  const btn=document.getElementById('btn-'+i);
+  const hidden=body.style.display==='none';
+  body.style.display=hidden?'block':'none';
+  btn.textContent=hidden?'접기':'펼치기';
+}
+document.querySelectorAll('input[type="checkbox"][data-key]').forEach(cb=>{
+  const key=cb.dataset.key;
+  cb.checked=localStorage.getItem(key)==='1';
+  cb.addEventListener('change',()=>localStorage.setItem(key,cb.checked?'1':'0'));
+});
+</script>
+</body>
+</html>
