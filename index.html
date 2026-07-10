@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>DANANG 2026</title>
+<style>
+:root{--bg:#f4f7f6;--card:#fff;--text:#17202a;--muted:#687280;--accent:#0f766e;--accent2:#155e75;--soft:#ccfbf1;--line:#e2e8e6;--danger:#b91c1c;--shadow:0 10px 30px rgba(15,23,42,.07)}
+[data-theme="dark"]{--bg:#0d1514;--card:#15201e;--text:#eef8f6;--muted:#9fb0ac;--accent:#5eead4;--accent2:#67e8f9;--soft:#193b36;--line:#2a3b38;--danger:#fca5a5;--shadow:none}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--text);line-height:1.55}
+button,input,select,textarea{font:inherit}
+.hero{padding:30px 18px 24px;background:
+radial-gradient(circle at 85% 12%,rgba(255,255,255,.22),transparent 25%),
+linear-gradient(135deg,#0f766e,#155e75 70%,#164e63);color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.05);right:-90px;bottom:-110px}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;position:relative;z-index:2}
+.hero h1{font-size:32px;margin:0 0 4px;letter-spacing:.5px} .hero p{margin:0;opacity:.9}
+.icon-btn{border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;width:44px;height:44px;border-radius:15px;font-size:20px}
+.status-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;position:relative;z-index:2}
+.status-card{padding:14px;border-radius:16px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2)}
+.status-card span{display:block;font-size:13px;opacity:.82} .status-card b{font-size:19px}
+.quick{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px;position:relative;z-index:2}
+.quick a{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:12px;border-radius:14px;font-weight:800;text-align:center}
+.nav{position:sticky;top:0;z-index:20;display:flex;gap:8px;overflow:auto;padding:10px 12px;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav a{white-space:nowrap;text-decoration:none;color:var(--accent);background:var(--soft);padding:8px 12px;border-radius:999px;font-weight:800;font-size:14px}
+main{max-width:860px;margin:auto;padding:16px 14px 56px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);margin-bottom:17px;overflow:hidden}
+.section-pad{padding:18px} .section-title{margin:0 0 12px;font-size:22px}
+.subhead{font-size:16px;margin:16px 0 8px;color:var(--accent)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.info-box{padding:14px;border:1px solid var(--line);border-radius:15px;background:color-mix(in srgb,var(--card) 94%,var(--accent) 6%)}
+.info-box b{display:block;color:var(--accent);margin-bottom:3px}
+.now-card{padding:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--soft) 70%,white),color-mix(in srgb,var(--card) 75%,var(--accent) 25%))}
+.now-card h2{margin:0 0 4px} .now-card p{margin:0 0 12px;color:var(--muted)}
+.now-action{display:flex;gap:10px;align-items:center;padding:14px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.now-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:var(--soft)}
+.now-action b{display:block} .now-action span{font-size:13px;color:var(--muted)}
+.day-cover{padding:22px;color:white;min-height:130px;display:flex;flex-direction:column;justify-content:flex-end}
+.day-cover span{font-size:13px;font-weight:900;opacity:.9} .day-cover h2{margin:2px 0 2px;font-size:25px} .day-cover p{margin:0;opacity:.9}
+.cover-0{background:linear-gradient(135deg,#334155,#0f766e)} .cover-1{background:linear-gradient(135deg,#ea580c,#0f766e)} .cover-2{background:linear-gradient(135deg,#0f766e,#0369a1)} .cover-3{background:linear-gradient(135deg,#d97706,#7c3aed)} .cover-4{background:linear-gradient(135deg,#7c3aed,#0f766e)} .cover-5{background:linear-gradient(135deg,#155e75,#334155)}
+.day-toolbar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+.day-toolbar button{border:0;background:var(--soft);color:var(--accent);font-weight:800;padding:8px 10px;border-radius:10px}
+.day-progress{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted)} .day-progress>div{width:110px;height:7px;border-radius:99px;background:var(--line);overflow:hidden} .day-progress i{display:block;height:100%;width:0;background:var(--accent);transition:.25s}
+.day-body{padding:14px}
+.timeline{display:flex;overflow:auto;gap:8px;padding-bottom:8px;margin-bottom:8px}
+.timeline-step{min-width:118px;padding:11px;border:1px solid var(--line);border-radius:13px;background:color-mix(in srgb,var(--card) 94%,var(--accent) 6%)}
+.timeline-step b{display:block;color:var(--accent);font-size:13px} .timeline-step span{font-size:14px;font-weight:800}
+.place-card{padding:15px;border:1px solid var(--line);border-radius:15px;margin-bottom:12px}
+.place-card.completed{opacity:.55} .place-card.completed h3{text-decoration:line-through}
+.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.time{color:var(--accent);font-weight:900} .tag{font-size:13px;color:var(--muted);background:color-mix(in srgb,var(--card) 85%,var(--line));padding:4px 8px;border-radius:999px}
+.place-card h3{margin:0 0 8px;font-size:18px} .place-card p{margin:5px 0;font-size:15px}
+.actions,.button-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.map-btn,.done-btn,.primary-btn,.secondary-btn{border:0;text-decoration:none;padding:10px 13px;border-radius:10px;font-weight:900}
+.map-btn,.primary-btn{background:var(--accent);color:#fff} .done-btn,.secondary-btn{background:var(--soft);color:var(--accent)}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.check-item{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.check-item input{width:20px;height:20px;accent-color:var(--accent)}
+.progress-block{margin:12px 0 18px} .progress-label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px} .progress-track{height:9px;border-radius:99px;background:var(--line);overflow:hidden} .progress-track i{display:block;height:100%;background:var(--accent);width:0;transition:.25s}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{display:flex;flex-direction:column;gap:5px} .field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:800;color:var(--muted)} .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:11px;padding:11px}
+.budget-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}
+.metric{padding:12px;border:1px solid var(--line);border-radius:13px;text-align:center} .metric span{display:block;color:var(--muted);font-size:12px} .metric b{font-size:17px}
+.chart{display:flex;flex-direction:column;gap:9px;margin:14px 0} .chart-row{display:grid;grid-template-columns:52px 1fr 70px;gap:8px;align-items:center;font-size:13px} .chart-row>div{height:9px;border-radius:99px;background:var(--line);overflow:hidden} .chart-row i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0}
+.expense-item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)} .expense-item small{display:block;color:var(--muted)} .expense-item button{border:0;background:none;color:var(--danger);font-weight:800}
+.restaurant-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.restaurant-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.food-art{height:110px;display:grid;place-items:center;font-size:46px} .food-0{background:linear-gradient(135deg,#fed7aa,#fecaca)} .food-1{background:linear-gradient(135deg,#bae6fd,#99f6e4)} .food-2{background:linear-gradient(135deg,#ddd6fe,#fecdd3)} .food-3{background:linear-gradient(135deg,#fde68a,#bbf7d0)} .food-4{background:linear-gradient(135deg,#fdba74,#fef08a)} .food-5{background:linear-gradient(135deg,#c4b5fd,#a7f3d0)}
+.restaurant-content{padding:13px} .restaurant-content h3{margin:0} .restaurant-content p{margin:3px 0 8px;color:var(--muted);font-size:13px}
+.stars{white-space:nowrap} .star{border:0;background:none;color:#cbd5e1;font-size:23px;padding:1px} .star.active{color:#f59e0b} .text-link{display:inline-block;margin-top:8px;color:var(--accent);font-weight:800;text-decoration:none}
+textarea{min-height:120px;resize:vertical} .small{font-size:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 18px 30px}
+@media(max-width:560px){.info-grid,.check-grid,.form-grid,.restaurant-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.budget-summary{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-top">
+    <div><h1>DANANG 2026</h1><p>2026.08.22 ~ 08.27 · Hyatt Regency Danang</p></div>
+    <button class="icon-btn" id="themeBtn">◐</button>
+  </div>
+  <div class="status-grid">
+    <div class="status-card"><span>출발까지</span><b id="dday">계산 중</b></div>
+    <div class="status-card"><span>다낭 현재시간</span><b id="danangClock">--:--</b></div>
+  </div>
+  <div class="quick">
+    <a href="#now">지금 뭐하지?</a><a href="#schedule">전체 일정</a>
+    <a href="#budget">경비</a><a href="#packing">준비물</a>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#overview">여행정보</a><a href="#now">지금</a><a href="#schedule">일정</a>
+  <a href="#budget">경비</a><a href="#packing">준비물</a><a href="#restaurants">맛집</a>
+  <a href="#notes">메모</a>
+</nav>
+
+<main>
+<section class="card section-pad" id="overview">
+  <h2 class="section-title">여행 한눈에 보기</h2>
+  <div class="info-grid">
+    <div class="info-box"><b>가는 편</b>에어서울 RS511<br>인천 20:55 출발</div>
+    <div class="info-box"><b>오는 편</b>티웨이 TW008<br>다낭 11:45 출발</div>
+    <div class="info-box"><b>숙소</b>하얏트 리젠시 다낭<br>논누억 비치</div>
+    <div class="info-box"><b>여행 스타일</b>오전 휴양<br>오후 맛집·카페·마사지</div>
+  </div>
+</section>
+
+<section class="card now-card" id="now">
+  <h2>지금 뭐하지?</h2><p id="nowSummary">시간에 맞는 추천을 준비 중이야.</p>
+  <div class="now-action">
+    <div class="now-icon" id="nowIcon">🌴</div>
+    <div style="flex:1"><b id="nowTitle">여행 준비</b><span id="nowDetail">준비물을 확인해줘.</span></div>
+    <a class="map-btn" id="nowMap" href="#packing">열기</a>
+  </div>
+</section>
+
+<section class="card section-pad">
+  <h2 class="section-title">예약·설치 체크</h2>
+  <div class="check-grid"><label class="check-item"><input type="checkbox" data-key="reserve-0"><span>Pizza 4P&#x27;s 예약</span></label><label class="check-item"><input type="checkbox" data-key="reserve-1"><span>Le Rendez-Vous 예약</span></label><label class="check-item"><input type="checkbox" data-key="reserve-2"><span>Aubergine49 예약</span></label><label class="check-item"><input type="checkbox" data-key="reserve-3"><span>Herbal Spa 예약</span></label><label class="check-item"><input type="checkbox" data-key="reserve-4"><span>항공 온라인 체크인 확인</span></label><label class="check-item"><input type="checkbox" data-key="reserve-5"><span>eSIM 설치 완료</span></label></div>
+</section>
+
+<div id="schedule">
+    <section class="day card" id="day-0" data-date="2026-08-22">
+      <div class="day-cover cover-0">
+        <span>8/22 토요일</span>
+        <h2>다낭 도착</h2>
+        <p>심야 도착 · 체크인 · 휴식</p>
+      </div>
+      <div class="day-toolbar">
+        <div class="day-progress"><span id="dayProgress-0">0%</span><div><i id="dayBar-0"></i></div></div>
+        <button onclick="toggleDay(0)" id="btn-0">접기</button>
+      </div>
+      <div class="day-body" id="body-0">
+        <div class="timeline"><div class="timeline-step"><b>23:40</b><span>다낭 국제공항</span></div><div class="timeline-step"><b>도착 후</b><span>하얏트 리젠시 다낭</span></div></div>
+        
+        <article class="place-card" data-day="0" data-item="0">
+          <div class="topline"><span class="time">23:40</span><span class="tag">공항</span></div>
+          <h3>다낭 국제공항</h3>
+          <p><b>이동</b> 입국·수하물 수령 후 그랩으로 하얏트 이동</p>
+          <p><b>예상 비용</b> 180,000~260,000동</p>
+          <p><b>메모</b> 공항에서는 물 정도만 사고 바로 호텔로 이동.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%EB%8B%A4%EB%82%AD+%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%2C+Da+Nang+International+Airport%2C+Duy+Tan%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-0-0">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="0" data-item="1">
+          <div class="topline"><span class="time">도착 후</span><span class="tag">호텔</span></div>
+          <h3>하얏트 리젠시 다낭</h3>
+          <p><b>이동</b> 체크인 후 바로 휴식</p>
+          
+          <p><b>메모</b> 첫날은 무리하지 말고 푹 쉬기.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%ED%95%98%EC%96%8F%ED%8A%B8+%EB%A6%AC%EC%A0%A0%EC%8B%9C+%EB%8B%A4%EB%82%AD%2C+5+Truong+Sa%2C+Hoa+Hai%2C+Ngu+Hanh+Son%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-0-1">방문 완료</button>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+    
+    <section class="day card" id="day-1" data-date="2026-08-23">
+      <div class="day-cover cover-1">
+        <span>8/23 일요일</span>
+        <h2>다낭 1일차</h2>
+        <p>피자 · 환전 · 카페 · 해산물 · 마사지</p>
+      </div>
+      <div class="day-toolbar">
+        <div class="day-progress"><span id="dayProgress-1">0%</span><div><i id="dayBar-1"></i></div></div>
+        <button onclick="toggleDay(1)" id="btn-1">접기</button>
+      </div>
+      <div class="day-body" id="body-1">
+        <div class="timeline"><div class="timeline-step"><b>12:30</b><span>Pizza 4P&#x27;s Hoàng Văn Thụ</span></div><div class="timeline-step"><b>14:30</b><span>Soạn Hà Jewelry</span></div><div class="timeline-step"><b>15:00</b><span>Cộng Cà Phê Bạch Đằng</span></div><div class="timeline-step"><b>18:30</b><span>MỘC Quán Seafood</span></div><div class="timeline-step"><b>20:30</b><span>Herbal Spa</span></div></div>
+        
+        <article class="place-card" data-day="1" data-item="0">
+          <div class="topline"><span class="time">12:30</span><span class="tag">점심</span></div>
+          <h3>Pizza 4P&#x27;s Hoàng Văn Thụ</h3>
+          <p><b>이동</b> 하얏트에서 그랩 약 25~35분</p>
+          <p><b>예상 비용</b> 450,000~750,000동</p>
+          <p><b>메모</b> 하프앤하프 피자 + 부라타/치즈 메뉴 추천.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Pizza+4P%27s+Ho%C3%A0ng+V%C4%83n+Th%E1%BB%A5%2C+8+Hoang+Van+Thu%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-1-0">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="1" data-item="1">
+          <div class="topline"><span class="time">14:30</span><span class="tag">환전</span></div>
+          <h3>Soạn Hà Jewelry</h3>
+          <p><b>이동</b> Pizza 4P&#x27;s에서 도보 약 5~10분</p>
+          <p><b>예상 비용</b> 당일 환율 비교</p>
+          <p><b>메모</b> 주변 환전소와 비교 후 이용.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=So%E1%BA%A1n+H%C3%A0+Jewelry%2C+121+Tran+Phu%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-1-1">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="1" data-item="2">
+          <div class="topline"><span class="time">15:00</span><span class="tag">카페</span></div>
+          <h3>Cộng Cà Phê Bạch Đằng</h3>
+          <p><b>이동</b> 환전소에서 도보 약 5~10분</p>
+          <p><b>예상 비용</b> 45,000~80,000동</p>
+          <p><b>메모</b> 코코넛커피 또는 아메리카노.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%99ng+C%C3%A0+Ph%C3%AA+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+96-98+Bach+Dang%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-1-2">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="1" data-item="3">
+          <div class="topline"><span class="time">18:30</span><span class="tag">저녁</span></div>
+          <h3>MỘC Quán Seafood</h3>
+          <p><b>이동</b> 카페에서 그랩 약 10~15분</p>
+          <p><b>예상 비용</b> 700,000~1,500,000동</p>
+          <p><b>메모</b> 크레이피시 또는 랍스터 + 볶음밥/모닝글로리.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=M%E1%BB%98C+Qu%C3%A1n+Seafood%2C+26+To+Hien+Thanh%2C+Son+Tra%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-1-3">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="1" data-item="4">
+          <div class="topline"><span class="time">20:30</span><span class="tag">마사지</span></div>
+          <h3>Herbal Spa</h3>
+          <p><b>이동</b> MỘC에서 그랩 약 5~10분</p>
+          <p><b>예상 비용</b> 500,000~900,000동</p>
+          <p><b>메모</b> 60~90분 코스.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Herbal+Spa%2C+201+Duong+Dinh+Nghe%2C+Son+Tra%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-1-4">방문 완료</button>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+    
+    <section class="day card" id="day-2" data-date="2026-08-24">
+      <div class="day-cover cover-2">
+        <span>8/24 월요일</span>
+        <h2>다낭 2일차</h2>
+        <p>리조트 휴양 · 롯데마트 · 프렌치</p>
+      </div>
+      <div class="day-toolbar">
+        <div class="day-progress"><span id="dayProgress-2">0%</span><div><i id="dayBar-2"></i></div></div>
+        <button onclick="toggleDay(2)" id="btn-2">접기</button>
+      </div>
+      <div class="day-body" id="body-2">
+        <div class="timeline"><div class="timeline-step"><b>오전</b><span>하얏트 리젠시 다낭</span></div><div class="timeline-step"><b>15:00</b><span>LOTTE Mart Đà Nẵng</span></div><div class="timeline-step"><b>19:00</b><span>Le Rendez-Vous</span></div></div>
+        
+        <article class="place-card" data-day="2" data-item="0">
+          <div class="topline"><span class="time">오전</span><span class="tag">휴양</span></div>
+          <h3>하얏트 리젠시 다낭</h3>
+          <p><b>이동</b> 조식 후 수영장·해변</p>
+          <p><b>예상 비용</b> 호텔 식음료 별도</p>
+          <p><b>메모</b> 점심은 호텔에서 가볍게.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%ED%95%98%EC%96%8F%ED%8A%B8+%EB%A6%AC%EC%A0%A0%EC%8B%9C+%EB%8B%A4%EB%82%AD%2C+5+Truong+Sa%2C+Hoa+Hai%2C+Ngu+Hanh+Son%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-2-0">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="2" data-item="1">
+          <div class="topline"><span class="time">15:00</span><span class="tag">쇼핑</span></div>
+          <h3>LOTTE Mart Đà Nẵng</h3>
+          <p><b>이동</b> 하얏트에서 그랩 약 20~30분</p>
+          <p><b>예상 비용</b> 300,000~1,000,000동</p>
+          <p><b>메모</b> 베트남 커피·과자·라면·선물.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=LOTTE+Mart+%C4%90%C3%A0+N%E1%BA%B5ng%2C+6+Nai+Nam%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-2-1">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="2" data-item="2">
+          <div class="topline"><span class="time">19:00</span><span class="tag">프렌치 저녁</span></div>
+          <h3>Le Rendez-Vous</h3>
+          <p><b>이동</b> 롯데마트에서 그랩 약 15~25분</p>
+          <p><b>예상 비용</b> 900,000~1,600,000동</p>
+          <p><b>메모</b> 스타터 1 + 고기 메인 1 + 디저트.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Le+Rendez-Vous%2C+26+Nguyen+Cao+Luyen%2C+Son+Tra%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-2-2">방문 완료</button>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+    
+    <section class="day card" id="day-3" data-date="2026-08-25">
+      <div class="day-cover cover-3">
+        <span>8/25 화요일</span>
+        <h2>호이안 1일차</h2>
+        <p>카페 · 올드타운 · 현지식 · 야시장</p>
+      </div>
+      <div class="day-toolbar">
+        <div class="day-progress"><span id="dayProgress-3">0%</span><div><i id="dayBar-3"></i></div></div>
+        <button onclick="toggleDay(3)" id="btn-3">접기</button>
+      </div>
+      <div class="day-body" id="body-3">
+        <div class="timeline"><div class="timeline-step"><b>16:00</b><span>Faifo Coffee</span></div><div class="timeline-step"><b>17:00</b><span>호이안 올드타운</span></div><div class="timeline-step"><b>19:00</b><span>Morning Glory Original</span></div><div class="timeline-step"><b>20:30</b><span>Nguyễn Hoàng 야시장</span></div></div>
+        
+        <article class="place-card" data-day="3" data-item="0">
+          <div class="topline"><span class="time">16:00</span><span class="tag">카페</span></div>
+          <h3>Faifo Coffee</h3>
+          <p><b>이동</b> 하얏트에서 차량 약 30~45분</p>
+          <p><b>예상 비용</b> 50,000~90,000동</p>
+          <p><b>메모</b> 루프톱 뷰 카페.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Faifo+Coffee%2C+130+Tran+Phu%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-3-0">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="3" data-item="1">
+          <div class="topline"><span class="time">17:00</span><span class="tag">산책</span></div>
+          <h3>호이안 올드타운</h3>
+          <p><b>이동</b> 카페에서 도보</p>
+          <p><b>예상 비용</b> 대부분 무료</p>
+          <p><b>메모</b> 골목과 강변 위주로 천천히.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%ED%98%B8%EC%9D%B4%EC%95%88+%EC%98%AC%EB%93%9C%ED%83%80%EC%9A%B4%2C+Hoi+An+Ancient+Town%2C+Minh+An%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-3-1">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="3" data-item="2">
+          <div class="topline"><span class="time">19:00</span><span class="tag">저녁</span></div>
+          <h3>Morning Glory Original</h3>
+          <p><b>이동</b> 올드타운 내 도보</p>
+          <p><b>예상 비용</b> 300,000~600,000동</p>
+          <p><b>메모</b> 까오러우 + 화이트로즈 또는 고기 메뉴.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Morning+Glory+Original%2C+106+Nguyen+Thai+Hoc%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-3-2">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="3" data-item="3">
+          <div class="topline"><span class="time">20:30</span><span class="tag">야경</span></div>
+          <h3>Nguyễn Hoàng 야시장</h3>
+          <p><b>이동</b> 식당에서 도보 약 10분</p>
+          <p><b>예상 비용</b> 100,000~300,000동</p>
+          <p><b>메모</b> 혼잡한 구간에서 소지품 주의.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Nguy%E1%BB%85n+Ho%C3%A0ng+%EC%95%BC%EC%8B%9C%EC%9E%A5%2C+Nguyen+Hoang+Night+Market%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-3-3">방문 완료</button>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+    
+    <section class="day card" id="day-4" data-date="2026-08-26">
+      <div class="day-cover cover-4">
+        <span>8/26 수요일</span>
+        <h2>호이안 2일차</h2>
+        <p>미꽝 · 카페 · 산책 · 마지막 저녁</p>
+      </div>
+      <div class="day-toolbar">
+        <div class="day-progress"><span id="dayProgress-4">0%</span><div><i id="dayBar-4"></i></div></div>
+        <button onclick="toggleDay(4)" id="btn-4">접기</button>
+      </div>
+      <div class="day-body" id="body-4">
+        <div class="timeline"><div class="timeline-step"><b>14:00</b><span>Mì Quảng Ông Hai</span></div><div class="timeline-step"><b>15:30</b><span>Ren Rứa Cafe</span></div><div class="timeline-step"><b>16:30</b><span>호이안 올드타운</span></div><div class="timeline-step"><b>19:00</b><span>Aubergine49 Restaurant</span></div></div>
+        
+        <article class="place-card" data-day="4" data-item="0">
+          <div class="topline"><span class="time">14:00</span><span class="tag">점심</span></div>
+          <h3>Mì Quảng Ông Hai</h3>
+          <p><b>이동</b> 하얏트에서 차량 약 30~45분</p>
+          <p><b>예상 비용</b> 40,000~80,000동</p>
+          <p><b>메모</b> 닭고기 미꽝(Mì Quảng Gà) 추천.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=M%C3%AC+Qu%E1%BA%A3ng+%C3%94ng+Hai%2C+6A+Truong+Minh+Luong%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-4-0">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="4" data-item="1">
+          <div class="topline"><span class="time">15:30</span><span class="tag">카페</span></div>
+          <h3>Ren Rứa Cafe</h3>
+          <p><b>이동</b> 미꽝집에서 그랩 약 5~10분</p>
+          <p><b>예상 비용</b> 45,000~90,000동</p>
+          <p><b>메모</b> 아메리카노 또는 시그니처 커피.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Ren+R%E1%BB%A9a+Cafe%2C+Hem+144+Nguyen+Truong+To%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-4-1">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="4" data-item="2">
+          <div class="topline"><span class="time">16:30</span><span class="tag">산책</span></div>
+          <h3>호이안 올드타운</h3>
+          <p><b>이동</b> 카페에서 도보 또는 짧은 그랩</p>
+          
+          <p><b>메모</b> 전날 못 본 골목 위주.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%ED%98%B8%EC%9D%B4%EC%95%88+%EC%98%AC%EB%93%9C%ED%83%80%EC%9A%B4%2C+Hoi+An+Ancient+Town%2C+Minh+An%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-4-2">방문 완료</button>
+          </div>
+        </article>
+        
+        <article class="place-card" data-day="4" data-item="3">
+          <div class="topline"><span class="time">19:00</span><span class="tag">마지막 저녁</span></div>
+          <h3>Aubergine49 Restaurant</h3>
+          <p><b>이동</b> 올드타운에서 그랩 약 5~10분</p>
+          <p><b>예상 비용</b> 900,000~1,700,000동</p>
+          <p><b>메모</b> 스타터 + 고기 메인/파스타 + 디저트.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Aubergine49+Restaurant%2C+49A+Ly+Thai+To%2C+Hoi+An%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-4-3">방문 완료</button>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+    
+    <section class="day card" id="day-5" data-date="2026-08-27">
+      <div class="day-cover cover-5">
+        <span>8/27 목요일</span>
+        <h2>귀국</h2>
+        <p>조식 · 공항 이동 · 출국</p>
+      </div>
+      <div class="day-toolbar">
+        <div class="day-progress"><span id="dayProgress-5">0%</span><div><i id="dayBar-5"></i></div></div>
+        <button onclick="toggleDay(5)" id="btn-5">접기</button>
+      </div>
+      <div class="day-body" id="body-5">
+        <div class="timeline"><div class="timeline-step"><b>08:30~09:00</b><span>다낭 국제공항</span></div></div>
+        
+        <article class="place-card" data-day="5" data-item="0">
+          <div class="topline"><span class="time">08:30~09:00</span><span class="tag">출국</span></div>
+          <h3>다낭 국제공항</h3>
+          <p><b>이동</b> 하얏트에서 그랩 약 25~35분</p>
+          <p><b>예상 비용</b> 180,000~260,000동</p>
+          <p><b>메모</b> 11:45 출국편 기준.</p>
+          <div class="actions">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%EB%8B%A4%EB%82%AD+%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%2C+Da+Nang+International+Airport%2C+Duy+Tan%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank" rel="noopener">지도 열기</a>
+            <button class="done-btn" data-key="done-5-0">방문 완료</button>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+    </div>
+
+<section class="card section-pad" id="budget">
+  <h2 class="section-title">여행 경비</h2>
+  <div class="form-grid">
+    <div class="field"><label>총예산 (동)</label><input id="totalBudget" type="number" value="12000000"></div>
+    <div class="field"><label>카테고리</label><select id="expenseCat"><option>식사</option><option>카페</option><option>교통</option><option>마사지</option><option>쇼핑</option><option>기타</option></select></div>
+    <div class="field"><label>금액 (동)</label><input id="expenseAmount" type="number" placeholder="350000"></div>
+    <div class="field"><label>내용</label><input id="expenseMemo" placeholder="Pizza 4P's"></div>
+  </div>
+  <div class="button-row"><button class="primary-btn" id="addExpense">지출 추가</button><button class="secondary-btn" id="clearExpenses">전체 삭제</button></div>
+  <div class="budget-summary">
+    <div class="metric"><span>사용</span><b id="spent">0동</b></div>
+    <div class="metric"><span>남음</span><b id="remaining">0동</b></div>
+    <div class="metric"><span>사용률</span><b id="usage">0%</b></div>
+  </div>
+  <div class="chart" id="expenseChart"></div>
+  <div id="expenseList"></div>
+</section>
+
+<section class="card section-pad" id="packing">
+  <h2 class="section-title">준비물 체크리스트</h2>
+  <div class="progress-block"><div class="progress-label"><span>준비 진행률</span><b id="packPercent">0%</b></div><div class="progress-track"><i id="packBar"></i></div></div>
+  <h3 class="subhead">필수</h3><div class="check-grid"><label class="check-item"><input type="checkbox" data-key="pack-0"><span>여권</span></label><label class="check-item"><input type="checkbox" data-key="pack-1"><span>항공권·호텔 예약 확인</span></label><label class="check-item"><input type="checkbox" data-key="pack-2"><span>트래블로그 카드</span></label><label class="check-item"><input type="checkbox" data-key="pack-3"><span>현금·환전</span></label><label class="check-item"><input type="checkbox" data-key="pack-4"><span>eSIM</span></label><label class="check-item"><input type="checkbox" data-key="pack-5"><span>여행자보험</span></label></div><h3 class="subhead">전자기기</h3><div class="check-grid"><label class="check-item"><input type="checkbox" data-key="pack-6"><span>충전기</span></label><label class="check-item"><input type="checkbox" data-key="pack-7"><span>보조배터리</span></label><label class="check-item"><input type="checkbox" data-key="pack-8"><span>멀티어댑터</span></label><label class="check-item"><input type="checkbox" data-key="pack-9"><span>이어폰</span></label></div><h3 class="subhead">건강</h3><div class="check-grid"><label class="check-item"><input type="checkbox" data-key="pack-10"><span>상비약</span></label><label class="check-item"><input type="checkbox" data-key="pack-11"><span>통풍약</span></label><label class="check-item"><input type="checkbox" data-key="pack-12"><span>감기약</span></label><label class="check-item"><input type="checkbox" data-key="pack-13"><span>진통제</span></label><label class="check-item"><input type="checkbox" data-key="pack-14"><span>밴드·소독제</span></label></div><h3 class="subhead">의류</h3><div class="check-grid"><label class="check-item"><input type="checkbox" data-key="pack-15"><span>선크림</span></label><label class="check-item"><input type="checkbox" data-key="pack-16"><span>선글라스</span></label><label class="check-item"><input type="checkbox" data-key="pack-17"><span>수영복</span></label><label class="check-item"><input type="checkbox" data-key="pack-18"><span>샌들</span></label><label class="check-item"><input type="checkbox" data-key="pack-19"><span>여벌 옷</span></label><label class="check-item"><input type="checkbox" data-key="pack-20"><span>우산</span></label></div>
+</section>
+
+<section class="card section-pad" id="restaurants">
+  <h2 class="section-title">맛집 카드</h2>
+  <div class="restaurant-grid">
+    <article class="restaurant-card">
+      <div class="food-art food-0"><span>🍕</span></div>
+      <div class="restaurant-content">
+        <h3>Pizza 4P&#x27;s</h3><p>하프앤하프·부라타</p>
+        <div class="stars" data-place="0"><button class="star" data-place="0" data-score="1" aria-label="1점">★</button><button class="star" data-place="0" data-score="2" aria-label="2점">★</button><button class="star" data-place="0" data-score="3" aria-label="3점">★</button><button class="star" data-place="0" data-score="4" aria-label="4점">★</button><button class="star" data-place="0" data-score="5" aria-label="5점">★</button></div>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Pizza+4P%27s%2C+8+Hoang+Van+Thu%2C+Hai+Chau%2C+Da+Nang%2C+Vietnam" target="_blank">Google Maps →</a>
+      </div>
+    </article>
+    
+    <article class="restaurant-card">
+      <div class="food-art food-1"><span>🦞</span></div>
+      <div class="restaurant-content">
+        <h3>MỘC Seafood</h3><p>크레이피시·랍스터</p>
+        <div class="stars" data-place="1"><button class="star" data-place="1" data-score="1" aria-label="1점">★</button><button class="star" data-place="1" data-score="2" aria-label="2점">★</button><button class="star" data-place="1" data-score="3" aria-label="3점">★</button><button class="star" data-place="1" data-score="4" aria-label="4점">★</button><button class="star" data-place="1" data-score="5" aria-label="5점">★</button></div>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=M%E1%BB%98C+Seafood%2C+26+To+Hien+Thanh%2C+Son+Tra%2C+Da+Nang%2C+Vietnam" target="_blank">Google Maps →</a>
+      </div>
+    </article>
+    
+    <article class="restaurant-card">
+      <div class="food-art food-2"><span>🍷</span></div>
+      <div class="restaurant-content">
+        <h3>Le Rendez-Vous</h3><p>프렌치 디너</p>
+        <div class="stars" data-place="2"><button class="star" data-place="2" data-score="1" aria-label="1점">★</button><button class="star" data-place="2" data-score="2" aria-label="2점">★</button><button class="star" data-place="2" data-score="3" aria-label="3점">★</button><button class="star" data-place="2" data-score="4" aria-label="4점">★</button><button class="star" data-place="2" data-score="5" aria-label="5점">★</button></div>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Le+Rendez-Vous%2C+26+Nguyen+Cao+Luyen%2C+Son+Tra%2C+Da+Nang%2C+Vietnam" target="_blank">Google Maps →</a>
+      </div>
+    </article>
+    
+    <article class="restaurant-card">
+      <div class="food-art food-3"><span>🥢</span></div>
+      <div class="restaurant-content">
+        <h3>Morning Glory</h3><p>까오러우·화이트로즈</p>
+        <div class="stars" data-place="3"><button class="star" data-place="3" data-score="1" aria-label="1점">★</button><button class="star" data-place="3" data-score="2" aria-label="2점">★</button><button class="star" data-place="3" data-score="3" aria-label="3점">★</button><button class="star" data-place="3" data-score="4" aria-label="4점">★</button><button class="star" data-place="3" data-score="5" aria-label="5점">★</button></div>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Morning+Glory%2C+106+Nguyen+Thai+Hoc%2C+Hoi+An%2C+Vietnam" target="_blank">Google Maps →</a>
+      </div>
+    </article>
+    
+    <article class="restaurant-card">
+      <div class="food-art food-4"><span>🍜</span></div>
+      <div class="restaurant-content">
+        <h3>Mì Quảng Ông Hai</h3><p>닭고기 미꽝</p>
+        <div class="stars" data-place="4"><button class="star" data-place="4" data-score="1" aria-label="1점">★</button><button class="star" data-place="4" data-score="2" aria-label="2점">★</button><button class="star" data-place="4" data-score="3" aria-label="3점">★</button><button class="star" data-place="4" data-score="4" aria-label="4점">★</button><button class="star" data-place="4" data-score="5" aria-label="5점">★</button></div>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=M%C3%AC+Qu%E1%BA%A3ng+%C3%94ng+Hai%2C+6A+Truong+Minh+Luong%2C+Hoi+An%2C+Vietnam" target="_blank">Google Maps →</a>
+      </div>
+    </article>
+    
+    <article class="restaurant-card">
+      <div class="food-art food-5"><span>🍽️</span></div>
+      <div class="restaurant-content">
+        <h3>Aubergine49</h3><p>마지막 저녁</p>
+        <div class="stars" data-place="5"><button class="star" data-place="5" data-score="1" aria-label="1점">★</button><button class="star" data-place="5" data-score="2" aria-label="2점">★</button><button class="star" data-place="5" data-score="3" aria-label="3점">★</button><button class="star" data-place="5" data-score="4" aria-label="4점">★</button><button class="star" data-place="5" data-score="5" aria-label="5점">★</button></div>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Aubergine49%2C+49A+Ly+Thai+To%2C+Hoi+An%2C+Vietnam" target="_blank">Google Maps →</a>
+      </div>
+    </article>
+    </div>
+</section>
+
+<section class="card section-pad" id="notes">
+  <h2 class="section-title">여행 메모</h2>
+  <textarea id="tripNotes" placeholder="예약번호, 사고 싶은 것, 오늘의 메모를 적어둬."></textarea>
+  <p class="small">자동 저장돼.</p>
+</section>
+</main>
+<footer>홈 화면에 추가해 두면 여행 앱처럼 사용할 수 있어.</footer>
+
+<script>
+const tripDays=[{"iso": "2026-08-22", "date": "8/22 토요일", "title": "다낭 도착", "summary": "심야 도착 · 체크인 · 휴식", "items": [{"time": "23:40", "name": "다낭 국제공항", "type": "공항", "address": "Da Nang International Airport, Duy Tan, Hai Chau, Da Nang, Vietnam"}, {"time": "도착 후", "name": "하얏트 리젠시 다낭", "type": "호텔", "address": "5 Truong Sa, Hoa Hai, Ngu Hanh Son, Da Nang, Vietnam"}]}, {"iso": "2026-08-23", "date": "8/23 일요일", "title": "다낭 1일차", "summary": "피자 · 환전 · 카페 · 해산물 · 마사지", "items": [{"time": "12:30", "name": "Pizza 4P's Hoàng Văn Thụ", "type": "점심", "address": "8 Hoang Van Thu, Hai Chau, Da Nang, Vietnam"}, {"time": "14:30", "name": "Soạn Hà Jewelry", "type": "환전", "address": "121 Tran Phu, Hai Chau, Da Nang, Vietnam"}, {"time": "15:00", "name": "Cộng Cà Phê Bạch Đằng", "type": "카페", "address": "96-98 Bach Dang, Hai Chau, Da Nang, Vietnam"}, {"time": "18:30", "name": "MỘC Quán Seafood", "type": "저녁", "address": "26 To Hien Thanh, Son Tra, Da Nang, Vietnam"}, {"time": "20:30", "name": "Herbal Spa", "type": "마사지", "address": "201 Duong Dinh Nghe, Son Tra, Da Nang, Vietnam"}]}, {"iso": "2026-08-24", "date": "8/24 월요일", "title": "다낭 2일차", "summary": "리조트 휴양 · 롯데마트 · 프렌치", "items": [{"time": "오전", "name": "하얏트 리젠시 다낭", "type": "휴양", "address": "5 Truong Sa, Hoa Hai, Ngu Hanh Son, Da Nang, Vietnam"}, {"time": "15:00", "name": "LOTTE Mart Đà Nẵng", "type": "쇼핑", "address": "6 Nai Nam, Hai Chau, Da Nang, Vietnam"}, {"time": "19:00", "name": "Le Rendez-Vous", "type": "프렌치 저녁", "address": "26 Nguyen Cao Luyen, Son Tra, Da Nang, Vietnam"}]}, {"iso": "2026-08-25", "date": "8/25 화요일", "title": "호이안 1일차", "summary": "카페 · 올드타운 · 현지식 · 야시장", "items": [{"time": "16:00", "name": "Faifo Coffee", "type": "카페", "address": "130 Tran Phu, Hoi An, Vietnam"}, {"time": "17:00", "name": "호이안 올드타운", "type": "산책", "address": "Hoi An Ancient Town, Minh An, Hoi An, Vietnam"}, {"time": "19:00", "name": "Morning Glory Original", "type": "저녁", "address": "106 Nguyen Thai Hoc, Hoi An, Vietnam"}, {"time": "20:30", "name": "Nguyễn Hoàng 야시장", "type": "야경", "address": "Nguyen Hoang Night Market, Hoi An, Vietnam"}]}, {"iso": "2026-08-26", "date": "8/26 수요일", "title": "호이안 2일차", "summary": "미꽝 · 카페 · 산책 · 마지막 저녁", "items": [{"time": "14:00", "name": "Mì Quảng Ông Hai", "type": "점심", "address": "6A Truong Minh Luong, Hoi An, Vietnam"}, {"time": "15:30", "name": "Ren Rứa Cafe", "type": "카페", "address": "Hem 144 Nguyen Truong To, Hoi An, Vietnam"}, {"time": "16:30", "name": "호이안 올드타운", "type": "산책", "address": "Hoi An Ancient Town, Minh An, Hoi An, Vietnam"}, {"time": "19:00", "name": "Aubergine49 Restaurant", "type": "마지막 저녁", "address": "49A Ly Thai To, Hoi An, Vietnam"}]}, {"iso": "2026-08-27", "date": "8/27 목요일", "title": "귀국", "summary": "조식 · 공항 이동 · 출국", "items": [{"time": "08:30~09:00", "name": "다낭 국제공항", "type": "출국", "address": "Da Nang International Airport, Duy Tan, Hai Chau, Da Nang, Vietnam"}]}];
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const fmt=n=>Math.round(Number(n)||0).toLocaleString('ko-KR')+'동';
+
+function toggleDay(i){
+ const body=$('#body-'+i),btn=$('#btn-'+i),hidden=body.style.display==='none';
+ body.style.display=hidden?'block':'none';btn.textContent=hidden?'접기':'펼치기';
+}
+
+function updateClock(){
+ const now=new Date();
+ $('#danangClock').textContent=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
+ const depart=new Date('2026-08-22T00:00:00+09:00'),diff=Math.ceil((depart-now)/(86400000));
+ $('#dday').textContent=diff>0?'D-'+diff:diff===0?'D-DAY':'여행 중/완료';
+}
+setInterval(updateClock,30000);updateClock();
+
+function getDanangParts(){
+ const f=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Ho_Chi_Minh',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false});
+ const p=Object.fromEntries(f.formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
+ return {iso:`${p.year}-${p.month}-${p.day}`,hour:Number(p.hour),minute:Number(p.minute)};
+}
+function timeToMin(t){
+ const m=t.match(/(\d{1,2}):(\d{2})/);return m?Number(m[1])*60+Number(m[2]):null;
+}
+function renderNow(){
+ const n=getDanangParts(),d=tripDays.find(x=>x.iso===n.iso);
+ if(!d){
+   $('#nowSummary').textContent='여행 전에는 예약과 준비물을 확인하는 게 좋아.';
+   $('#nowTitle').textContent='준비물 체크';$('#nowDetail').textContent='여권·eSIM·약·환전을 한 번 확인해줘.';$('#nowIcon').textContent='🧳';$('#nowMap').href='#packing';$('#nowMap').textContent='확인';
+   return;
+ }
+ const nowMin=n.hour*60+n.minute;
+ let target=d.items.find(x=>{const m=timeToMin(x.time);return m!==null&&m>=nowMin-45;});
+ if(!target) target=d.items[d.items.length-1];
+ $('#nowSummary').textContent=d.date+' · '+d.title;
+ $('#nowTitle').textContent=target.name;$('#nowDetail').textContent=target.time+' · '+target.type;$('#nowIcon').textContent=target.type.includes('카페')?'☕':target.type.includes('저녁')||target.type.includes('점심')?'🍽️':target.type.includes('마사지')?'💆':target.type.includes('공항')||target.type.includes('출국')?'✈️':'📍';
+ $('#nowMap').href='0'.replace('0','')+ 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(target.name);$('#nowMap').textContent='지도';
+}
+renderNow();
+
+document.documentElement.dataset.theme=localStorage.getItem('theme')||'light';
+$('#themeBtn').onclick=()=>{const n=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=n;localStorage.setItem('theme',n);};
+
+function updatePack(){
+ const boxes=[...$$('input[data-key^="pack-"]')],done=boxes.filter(x=>x.checked).length,p=boxes.length?Math.round(done/boxes.length*100):0;
+ $('#packPercent').textContent=p+'%';$('#packBar').style.width=p+'%';
+}
+$$('input[type="checkbox"][data-key]').forEach(cb=>{const k=cb.dataset.key;cb.checked=localStorage.getItem(k)==='1';cb.onchange=()=>{localStorage.setItem(k,cb.checked?'1':'0');updatePack();};});updatePack();
+
+function updateDayProgress(i){
+ const btns=[...$$(`.done-btn[data-key^="done-${i}-"]`)],done=btns.filter(b=>localStorage.getItem(b.dataset.key)==='1').length,p=btns.length?Math.round(done/btns.length*100):0;
+ $('#dayProgress-'+i).textContent=p+'%';$('#dayBar-'+i).style.width=p+'%';
+}
+$$('.done-btn').forEach(btn=>{const k=btn.dataset.key,card=btn.closest('.place-card'),i=Number(card.dataset.day);const apply=()=>{const d=localStorage.getItem(k)==='1';card.classList.toggle('completed',d);btn.textContent=d?'완료 취소':'방문 완료';updateDayProgress(i);};apply();btn.onclick=()=>{localStorage.setItem(k,localStorage.getItem(k)==='1'?'0':'1');apply();};});
+tripDays.forEach((_,i)=>updateDayProgress(i));
+
+let expenses=JSON.parse(localStorage.getItem('expenses')||'[]');
+function saveExpenses(){localStorage.setItem('expenses',JSON.stringify(expenses));renderExpenses();}
+function renderExpenses(){
+ const budget=Number($('#totalBudget').value)||0;localStorage.setItem('totalBudget',budget);
+ const spent=expenses.reduce((s,x)=>s+Number(x.amount),0);$('#spent').textContent=fmt(spent);$('#remaining').textContent=fmt(Math.max(0,budget-spent));$('#usage').textContent=budget?Math.round(spent/budget*100)+'%':'0%';
+ const cats=['식사','카페','교통','마사지','쇼핑','기타'],totals=Object.fromEntries(cats.map(c=>[c,expenses.filter(x=>x.cat===c).reduce((s,x)=>s+Number(x.amount),0)])),max=Math.max(1,...Object.values(totals));
+ $('#expenseChart').innerHTML=cats.map(c=>`<div class="chart-row"><span>${c}</span><div><i style="width:${totals[c]/max*100}%"></i></div><b>${Math.round(totals[c]/1000)}k</b></div>`).join('');
+ $('#expenseList').innerHTML=expenses.length?expenses.map((x,i)=>`<div class="expense-item"><div><b>${x.memo||x.cat}</b><small>${x.cat}</small></div><div><b>${fmt(x.amount)}</b><button onclick="removeExpense(${i})">삭제</button></div></div>`).join(''):'<p class="small">아직 입력한 경비가 없어.</p>';
+}
+window.removeExpense=i=>{expenses.splice(i,1);saveExpenses();};
+$('#totalBudget').value=localStorage.getItem('totalBudget')||'12000000';$('#totalBudget').oninput=renderExpenses;
+$('#addExpense').onclick=()=>{const a=Number($('#expenseAmount').value);if(!a)return alert('금액을 입력해줘.');expenses.unshift({cat:$('#expenseCat').value,amount:a,memo:$('#expenseMemo').value.trim()});$('#expenseAmount').value='';$('#expenseMemo').value='';saveExpenses();};
+$('#clearExpenses').onclick=()=>{if(confirm('모두 지울까?')){expenses=[];saveExpenses();}};renderExpenses();
+
+$$('.stars').forEach(g=>{const p=g.dataset.place,paint=n=>g.querySelectorAll('.star').forEach(s=>s.classList.toggle('active',Number(s.dataset.score)<=n));paint(Number(localStorage.getItem('rating-'+p)||0));g.querySelectorAll('.star').forEach(s=>s.onclick=()=>{localStorage.setItem('rating-'+p,s.dataset.score);paint(Number(s.dataset.score));});});
+const notes=$('#tripNotes');notes.value=localStorage.getItem('tripNotes')||'';notes.oninput=()=>localStorage.setItem('tripNotes',notes.value);
+</script>
+</body></html>
