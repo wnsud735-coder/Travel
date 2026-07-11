@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Linda Travel 5.5</title>
+<style>
+:root{--bg:#f4f7f6;--card:#fff;--text:#14211f;--muted:#6b7472;--accent:#0f766e;--accent2:#155e75;--soft:#ccfbf1;--line:#dfe8e5;--danger:#b91c1c;--shadow:0 12px 32px rgba(15,23,42,.07)}
+[data-theme="dark"]{--bg:#0d1514;--card:#16201e;--text:#eef8f5;--muted:#9fb0ac;--accent:#5eead4;--accent2:#67e8f9;--soft:#193b36;--line:#2a3b38;--danger:#fca5a5;--shadow:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--text);line-height:1.55}button,input,select,textarea{font:inherit}
+.hero{padding:28px 18px 22px;background:linear-gradient(135deg,#0f766e,#155e75);color:#fff}.hero-top{display:flex;justify-content:space-between;gap:12px}.hero h1{margin:0;font-size:32px}.hero p{margin:2px 0 0;opacity:.9}.badge{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);font-size:12px;font-weight:900}.icon-btn{width:44px;height:44px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;border-radius:14px;font-size:20px}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.hero-stat{padding:13px;border-radius:15px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18)}.hero-stat span{display:block;font-size:12px;opacity:.8}.hero-stat b{font-size:18px}
+.nav{position:sticky;top:0;z-index:20;display:flex;gap:8px;overflow:auto;padding:10px 12px;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav a{white-space:nowrap;text-decoration:none;color:var(--accent);background:var(--soft);padding:8px 12px;border-radius:999px;font-size:14px;font-weight:800}
+main{max-width:880px;margin:auto;padding:16px 14px 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}.pad{padding:18px}h2{margin:0 0 12px}.small{font-size:13px;color:var(--muted)}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.primary,.secondary,.danger{border:0;padding:11px 14px;border-radius:11px;font-weight:900;text-decoration:none;display:inline-block;text-align:center}.primary{background:var(--accent);color:#fff}.secondary{background:var(--soft);color:var(--accent)}.danger{background:#fee2e2;color:var(--danger)}
+.next{padding:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--soft) 74%,white),color-mix(in srgb,var(--card) 78%,var(--accent) 22%))}.next-head{display:flex;justify-content:space-between;gap:12px}.next-main{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:center;margin-top:14px}.next-icon{width:58px;height:58px;border-radius:18px;background:var(--soft);display:grid;place-items:center;font-size:30px}.next h3{margin:0;font-size:22px}.pill-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.pill{padding:5px 8px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:12px;color:var(--muted)}.grab-box{margin-top:12px;padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--card)}.grab-box b{display:block;font-size:17px}.grab-box span{font-size:13px;color:var(--muted)}
+.timeline{display:grid;gap:10px}.timeline-item{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:13px;border:1px solid var(--line);border-radius:14px}.timeline-item.done{opacity:.55}.timeline-time{font-weight:900;color:var(--accent)}.timeline-title{font-weight:900}.timeline-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.money{font-size:13px;color:var(--muted);margin-top:4px}
+.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:13px;font-weight:800;color:var(--muted)}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:11px;padding:11px}textarea{min-height:110px}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.metric{padding:12px;border:1px solid var(--line);border-radius:13px;text-align:center}.metric span{display:block;font-size:12px;color:var(--muted)}.metric b{font-size:16px}.progress{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:12px}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0}
+.close-day{padding:18px;background:linear-gradient(135deg,#ede9fe,#fce7f3)}[data-theme="dark"] .close-day{background:linear-gradient(135deg,#2c2048,#43223b)}.draft{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--card);white-space:pre-wrap;margin-top:12px}
+.album-group{padding:14px;border:1px solid var(--line);border-radius:15px;margin-bottom:10px}.album-group h3{margin:0 0 8px}.album-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.photo-wrap{position:relative}.photo-wrap img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}.photo-wrap.best:after{content:"BEST";position:absolute;top:5px;right:5px;background:#f59e0b;color:#fff;padding:3px 6px;border-radius:999px;font-size:10px;font-weight:900}
+.quest-list{display:grid;gap:9px}.quest{display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:13px}.quest input{width:20px;height:20px;accent-color:var(--accent)}.patch{padding:14px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--card) 92%,var(--accent) 8%)}.patch ul{margin:6px 0 0;padding-left:18px}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}.album-grid{grid-template-columns:repeat(3,1fr)}}
+
+.record-list{display:grid;gap:9px}
+.record-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--card)}
+.record-item b{display:block}.record-item span{display:block;font-size:12px;color:var(--muted)}
+.record-actions{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.record-actions button{padding:7px 9px;border-radius:9px}
+
+
+.weather-strip{margin-top:12px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.weather-emoji{font-size:28px}.weather-main b{display:block;font-size:17px}.weather-main span{font-size:12px;opacity:.82}.weather-side{text-align:right}.weather-side b{display:block}.weather-side span{font-size:12px;opacity:.82}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.action-grid .primary,.action-grid .secondary{width:100%}
+
+
+.day-summary{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.day-summary .metric{padding:12px}.one-line{margin-top:12px}.one-line textarea{min-height:76px}
+.journal-list{display:grid;gap:9px;margin-top:12px}.journal-item{padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--card)}.journal-item b{display:block;margin-bottom:5px}
+.report-hero{text-align:center;padding:20px 10px}.report-title{font-size:30px;font-weight:950;letter-spacing:-1px}.report-sub{color:var(--muted);margin-top:4px}
+.report-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:14px}.report-stat{padding:14px;border:1px solid var(--line);border-radius:14px}.report-stat span{display:block;color:var(--muted);font-size:12px}.report-stat b{display:block;font-size:20px;margin-top:3px}
+.best-photo-report{margin-top:14px;text-align:center}.best-photo-report img{width:100%;max-height:360px;object-fit:cover;border-radius:18px}
+.report-note{margin-top:12px;padding:14px;border-radius:14px;background:color-mix(in srgb,var(--card) 90%,var(--accent) 10%);white-space:pre-wrap}
+
+
+.exchange-strip{margin-top:10px;padding:11px 14px;border-radius:16px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.exchange-left b{display:block;font-size:15px}.exchange-left span{font-size:12px;opacity:.8}
+.exchange-value{text-align:right}.exchange-value b{display:block;font-size:17px}.exchange-value span{font-size:11px;opacity:.72}
+.exchange-value a{color:inherit;text-decoration:none}
+
+
+.fx-calc{margin-top:10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16)}
+.fx-calc-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.fx-calc input{width:100%;border:0;border-radius:12px;padding:12px 13px;font-size:16px;background:rgba(255,255,255,.92);color:#111;outline:none}
+.fx-result{margin-top:8px;font-weight:800;font-size:16px}
+.fx-result span{font-size:12px;font-weight:500;opacity:.78}
+
+
+.patch-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}
+.patch-toggle .chevron{font-size:18px;transition:transform .2s ease}
+.patch-toggle[aria-expanded="true"] .chevron{transform:rotate(180deg)}
+.patch-body{overflow:hidden;max-height:0;opacity:0;transition:max-height .28s ease,opacity .2s ease,margin-top .2s ease;margin-top:0}
+.patch-body.open{max-height:1200px;opacity:1;margin-top:12px}
+
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-top">
+    <div><h1>Linda Travel</h1><p>Da Nang · 2026.08.22 ~ 08.27</p><span class="badge">LINDA TRAVEL 5.5</span></div>
+    <button class="icon-btn" id="themeBtn">◐</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><span>출발까지</span><b id="dday">계산 중</b></div>
+    <div class="hero-stat"><span>다낭 현재시간</span><b id="danangClock">--:--</b></div>
+  </div>
+  <div class="weather-strip">
+    <div class="weather-emoji" id="weatherIcon">🌴</div>
+    <div class="weather-main"><b id="weatherTitle">다낭 날씨 확인 중</b><span id="weatherDetail">현재 기온과 체감온도를 불러오고 있어.</span></div>
+    <div class="weather-side"><b id="weatherTemp">--°</b><span id="weatherRain">비 --%</span></div>
+  </div>
+  <div class="exchange-strip" id="exchangeCard">
+    <div class="exchange-left">
+      <b>💵 베트남 동 환율</b>
+      <span id="exchangeHint">최신 환율 확인 중</span>
+    </div>
+    <div class="exchange-value">
+      <b id="exchangeRate">1,000동 = --원</b>
+      <span><a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates By Exchange Rate API</a></span>
+    </div>
+  </div>
+
+  <div class="fx-calc">
+    <div class="fx-calc-row">
+      <input id="fxVndInput" type="number" inputmode="numeric" min="0" step="1000" placeholder="예: 200000">
+      <button class="secondary" id="fxClearBtn">지우기</button>
+    </div>
+    <div class="fx-result" id="fxResult">동 금액을 입력하면 원화로 바로 보여줘.</div>
+  </div>
+
+</header>
+<nav class="nav">
+  <a href="#next">다음 일정</a><a href="#today">오늘 일정</a><a href="#budget">경비</a><a href="#close">하루 마감</a><a href="#album">자동 앨범</a><a href="#quests">퀘스트</a>
+</nav>
+<main>
+<section class="card next" id="next">
+  <div class="next-head"><div><h2>📍 다음 일정</h2><p class="small">시간과 완료 상태를 보고 자동 선택해.</p></div><span class="pill" id="nextStatus">준비 중</span></div>
+  <div class="next-main"><div class="next-icon" id="nextIcon">🧳</div><div><h3 id="nextName">여행 준비</h3><div class="small" id="nextTime">출발 전</div><div class="pill-row"><span class="pill" id="nextType">준비</span><span class="pill" id="nextDistance">위치 확인 전</span></div></div></div>
+  <div id="gpsStatus" class="small" style="margin-top:10px">위치 기준을 자동으로 선택하는 중이야.</div>
+<div class="action-grid">
+  <a class="secondary" href="#today">오늘 일정 보기</a>
+  <a class="primary" id="nextDirections" href="#today">Google Maps 길찾기</a>
+  <button class="secondary" id="nextDone">도착 완료</button>
+  <button class="secondary" id="showGrabPanel">Grab 실제요금 입력</button>
+</div>
+<details style="margin-top:10px">
+  <summary class="small" style="cursor:pointer">위치 기준 직접 바꾸기</summary>
+  <div class="row" style="margin-top:8px">
+    <button class="secondary" id="locateBtn">현재 위치 사용</button>
+    <button class="secondary" id="useHotelLocation">호텔 기준 사용</button>
+  </div>
+</details>
+  <div class="grab-box" id="nextGrab"><b>Grab 예상요금</b><span>현재 위치 또는 호텔 기준을 선택하면 동·원화로 계산해.</span></div>
+<div id="actualGrabPanel" class="grab-box" style="display:none">
+  <b>실제 Grab 요금 기록</b>
+  <div class="row" style="margin-top:8px">
+    <input id="actualGrabAmount" type="number" placeholder="실제 결제금액(동)" style="flex:1;min-width:160px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:10px">
+    <button class="primary" id="saveActualGrab">Grab 경비 저장</button>
+    <button class="secondary" id="skipActualGrab">건너뛰기</button>
+  </div>
+</div>
+</section>
+
+<section class="card pad" id="today">
+  <h2 id="todayTitle">오늘 일정</h2><p class="small" id="todaySummary"></p><div class="timeline" id="todayTimeline"></div>
+</section>
+
+<section class="card pad" id="budget">
+  <h2>💰 여행 경비</h2>
+  <div class="grid2">
+    <div class="field"><label>총예산(동)</label><input id="totalBudget" type="number" value="12000000"></div>
+    <div class="field"><label>카테고리</label><select id="expenseCat"><option>식사</option><option>카페</option><option>교통</option><option>마사지</option><option>쇼핑</option><option>기타</option></select></div>
+    <div class="field"><label>금액(동)</label><input id="expenseAmount" type="number"></div>
+    <div class="field"><label>내용</label><input id="expenseMemo" placeholder="예: 저녁 식사"></div>
+  </div>
+  <div class="row" style="margin-top:10px"><button class="primary" id="addExpense">지출 추가</button><button class="secondary" id="subtractExpense">지출 빼기</button><button class="secondary" id="undoExpense">마지막 입력 취소</button></div>
+
+  <div class="metric-grid" style="margin-top:12px">
+    <div class="metric"><span>사용</span><b id="spent">0동</b></div>
+    <div class="metric"><span>남음</span><b id="remaining">0동</b></div>
+    <div class="metric"><span>원화</span><b id="spentKrw">0원</b></div>
+  </div>
+  <div class="progress"><i id="budgetBar"></i></div>
+  <p class="small" style="margin-top:12px">잘못 입력했으면 `마지막 입력 취소` 또는 아래 내역의 `삭제`를 눌러.</p><div id="expenseList" style="margin-top:8px"></div>
+</section>
+
+<section class="card pad" id="grabLedger">
+  <h2>🚕 Grab 전용 기록</h2>
+  <p class="small">일반 경비와 따로 관리하고, 총합은 전체 경비에도 반영돼.</p>
+  <div class="grid2">
+    <div class="field"><label>출발지</label><input id="grabFrom" placeholder="예: Hyatt"></div>
+    <div class="field"><label>도착지</label><input id="grabTo" placeholder="예: Pizza 4P's"></div>
+    <div class="field"><label>요금(동)</label><input id="grabAmount" type="number" placeholder="예: 85000"></div>
+    <div class="field"><label>메모</label><input id="grabMemo" placeholder="예: 저녁 이동"></div>
+  </div>
+  <div class="row" style="margin-top:10px">
+    <button class="primary" id="addGrabRide">Grab 기록 추가</button>
+    <button class="secondary" id="clearGrabRides">Grab 전체 삭제</button>
+  </div>
+  <div class="metric-grid" style="margin-top:12px">
+    <div class="metric"><span>이용 횟수</span><b id="grabCount">0회</b></div>
+    <div class="metric"><span>총요금</span><b id="grabTotal">0동</b></div>
+    <div class="metric"><span>원화</span><b id="grabTotalKrw">0원</b></div>
+  </div>
+  <div id="grabRideList" style="margin-top:14px"></div>
+</section>
+
+
+<section class="card close-day" id="close">
+  <h2>🌙 오늘 하루 마무리</h2>
+  <p class="small">완료한 일정·경비·Grab·사진을 자동으로 모아줘. 너는 오늘의 한 줄만 남기면 돼.</p>
+  <div class="day-summary">
+    <div class="metric"><span>방문</span><b id="closeVisited">0곳</b></div>
+    <div class="metric"><span>오늘 지출</span><b id="closeSpent">0동</b></div>
+    <div class="metric"><span>사진</span><b id="closePhotos">0장</b></div>
+  </div>
+  <div class="one-line field">
+    <label>오늘의 한 줄</label>
+    <textarea id="todayOneLine" placeholder="예: 마사지가 생각보다 진짜 좋았다."></textarea>
+  </div>
+  <div class="row">
+    <button class="primary" id="generateDraft">오늘 기록 만들기</button>
+    <button class="secondary" id="saveDraft">오늘 하루 저장</button>
+  </div>
+  <div class="draft" id="draftBox">아직 초안을 만들지 않았어.</div>
+  <div class="journal-list" id="journalList"></div>
+</section>
+
+
+<section class="card pad" id="album">
+  <h2>📷 자동 여행 앨범</h2><p class="small">사진을 날짜별로 자동 정리해. 사진을 누르면 오늘의 베스트로 지정돼.</p>
+  <div class="grid2">
+    <div class="field"><label>날짜</label><input id="albumDate" type="date"></div>
+    <div class="field"><label>사진 추가</label><input id="albumPhoto" type="file" accept="image/*" multiple></div>
+  </div>
+  <button class="primary" id="saveAlbum" style="margin-top:10px">앨범에 추가</button>
+  <div id="albumList" style="margin-top:12px"></div>
+</section>
+
+<section class="card pad" id="quests">
+  <h2 id="questTitle">🎯 소소한 여행 퀘스트</h2><p class="small">부담 없이 자연스럽게 달성할 수 있는 것만.</p>
+  <div class="quest-list">
+    <label class="quest"><input type="checkbox" data-key="quest-0"><span>🛬 다낭에 무사히 도착하기</span></label>
+    <label class="quest"><input type="checkbox" data-key="quest-1"><span>🍕 Pizza 4P's 즐기기</span></label>
+    <label class="quest"><input type="checkbox" data-key="quest-2"><span>☕ 베트남 커피 한 잔 마시기</span></label>
+    <label class="quest"><input type="checkbox" data-key="quest-3"><span>💆 마사지로 제대로 쉬기</span></label>
+    <label class="quest"><input type="checkbox" data-key="quest-4"><span>🏮 호이안의 밤 보기</span></label>
+    <label class="quest"><input type="checkbox" data-key="quest-5"><span>🐔 졸리비 먹어보기</span></label>
+  </div>
+</section>
+
+<section class="card pad" id="report">
+  <div class="report-hero">
+    <div class="report-title">🌴 DA NANG 2026</div>
+    <div class="report-sub">Linda Travel이 여행 기록을 자동으로 모아줘.</div>
+  </div>
+  <div class="report-grid">
+    <div class="report-stat"><span>방문한 장소</span><b id="reportVisited">0곳</b></div>
+    <div class="report-stat"><span>총 지출</span><b id="reportSpent">0동</b></div>
+    <div class="report-stat"><span>Grab 이용</span><b id="reportGrab">0회</b></div>
+    <div class="report-stat"><span>퀘스트</span><b id="reportQuest">0/6</b></div>
+  </div>
+  <div class="best-photo-report" id="reportBestPhoto"></div>
+  <div class="report-note" id="reportJournal">저장한 하루 기록이 쌓이면 여기에 여행 요약이 보여.</div>
+  <button class="primary" id="refreshReport" style="margin-top:12px;width:100%">여행 리포트 새로고침</button>
+</section>
+
+
+<section class="card pad">
+  <button class="patch-toggle" id="patchToggle" aria-expanded="false" aria-controls="patchBody">
+    <h2 style="margin:0">📦 5.5 패치노트</h2>
+    <span class="chevron">⌄</span>
+  </button>
+  <div class="patch-body" id="patchBody">
+<div class="patch"><b>Linda Travel 5.4</b><ul><li>다음 일정 자동 선택</li><li>Google Maps 원터치 길찾기</li><li>Grab 요금 동·원화 표시</li><li>오늘 하루 마무리와 자동 일기 초안</li><li>날짜별 자동 앨범과 베스트 사진</li><li>퀘스트 6개로 정리</li><li>아이폰 앱 느낌으로 전체 리디자인</li><li>GPS를 경비에서 다음 일정으로 이동</li><li>일정 완료 후 실제 Grab 요금 자동 기록</li><li>여행 전 호텔 기준·여행 중 현재 위치 자동 선택</li><li>Google Maps 길찾기 버튼 상시 표시</li><li>오늘 일정 보기 버튼 복구</li><li>상단 실시간 다낭 날씨 카드 추가</li><li>하루 마무리 자동 요약 강화</li><li>오늘의 한 줄과 저장된 여행 일기 표시</li><li>여행 리포트 화면 추가</li><li>베트남 동 실시간 환율 카드 추가</li><li>최신 환율을 경비·Grab 원화 환산에 자동 적용</li><li>동 금액 입력 시 원화 즉시 계산</li><li>패치내역 접기·펼치기 기능 추가</li></ul></div>
+  </div>
+</section>
+</main>
+<script>
+const days=[{"iso": "2026-08-22", "date": "8/22 토요일", "title": "다낭 도착", "summary": "심야 도착 · 체크인 · 휴식", "items": [{"time": "23:40", "name": "다낭 국제공항", "type": "공항", "address": "Da Nang International Airport, Vietnam", "lat": 16.0439, "lon": 108.1994, "costMin": 180000, "costMax": 260000, "note": "입국·수하물 후 그랩으로 하얏트 이동"}, {"time": "도착 후", "name": "하얏트 리젠시 다낭", "type": "호텔", "address": "5 Truong Sa, Da Nang, Vietnam", "lat": 16.0042, "lon": 108.2635, "costMin": 0, "costMax": 0, "note": "체크인 후 바로 휴식"}]}, {"iso": "2026-08-23", "date": "8/23 일요일", "title": "다낭 1일차", "summary": "피자 · 환전 · 카페 · 해산물 · 마사지", "items": [{"time": "12:30", "name": "Pizza 4P's Hoàng Văn Thụ", "type": "점심", "address": "8 Hoang Van Thu, Da Nang, Vietnam", "lat": 16.0657, "lon": 108.2235, "costMin": 450000, "costMax": 750000, "note": "하프앤하프 + 부라타"}, {"time": "14:30", "name": "Soạn Hà Jewelry", "type": "환전", "address": "121 Tran Phu, Da Nang, Vietnam", "lat": 16.0684, "lon": 108.224, "costMin": 0, "costMax": 0, "note": "주변 환율 비교"}, {"time": "15:00", "name": "Cộng Cà Phê Bạch Đằng", "type": "카페", "address": "96-98 Bach Dang, Da Nang, Vietnam", "lat": 16.0712, "lon": 108.2244, "costMin": 45000, "costMax": 80000, "note": "코코넛커피 또는 아메리카노"}, {"time": "18:30", "name": "MỘC Quán Seafood", "type": "저녁", "address": "26 To Hien Thanh, Da Nang, Vietnam", "lat": 16.064, "lon": 108.242, "costMin": 700000, "costMax": 1500000, "note": "크레이피시/랍스터 + 볶음밥"}, {"time": "20:30", "name": "Herbal Spa", "type": "마사지", "address": "201 Duong Dinh Nghe, Da Nang, Vietnam", "lat": 16.069, "lon": 108.2408, "costMin": 500000, "costMax": 900000, "note": "60~90분 코스"}]}, {"iso": "2026-08-24", "date": "8/24 월요일", "title": "다낭 2일차", "summary": "리조트 휴양 · 롯데마트 · 프렌치", "items": [{"time": "오전", "name": "하얏트 리젠시 다낭", "type": "휴양", "address": "5 Truong Sa, Da Nang, Vietnam", "lat": 16.0042, "lon": 108.2635, "costMin": 0, "costMax": 0, "note": "조식 후 수영장·해변"}, {"time": "15:00", "name": "LOTTE Mart Đà Nẵng", "type": "쇼핑", "address": "6 Nai Nam, Da Nang, Vietnam", "lat": 16.0389, "lon": 108.2268, "costMin": 300000, "costMax": 1000000, "note": "커피·과자·선물"}, {"time": "19:00", "name": "Le Rendez-Vous", "type": "저녁", "address": "26 Nguyen Cao Luyen, Da Nang, Vietnam", "lat": 16.0759, "lon": 108.2408, "costMin": 900000, "costMax": 1600000, "note": "스타터 + 고기 메인 + 디저트"}]}, {"iso": "2026-08-25", "date": "8/25 화요일", "title": "호이안 1일차", "summary": "카페 · 올드타운 · 현지식 · 야시장", "items": [{"time": "16:00", "name": "Faifo Coffee", "type": "카페", "address": "130 Tran Phu, Hoi An, Vietnam", "lat": 15.8772, "lon": 108.3269, "costMin": 50000, "costMax": 90000, "note": "루프톱 뷰"}, {"time": "17:00", "name": "호이안 올드타운", "type": "산책", "address": "Hoi An Ancient Town, Vietnam", "lat": 15.8765, "lon": 108.3273, "costMin": 0, "costMax": 0, "note": "골목과 강변 산책"}, {"time": "19:00", "name": "Morning Glory Original", "type": "저녁", "address": "106 Nguyen Thai Hoc, Hoi An, Vietnam", "lat": 15.8769, "lon": 108.3281, "costMin": 300000, "costMax": 600000, "note": "까오러우 + 화이트로즈"}, {"time": "20:30", "name": "Nguyen Hoang Night Market", "type": "야경", "address": "Nguyen Hoang, Hoi An, Vietnam", "lat": 15.8777, "lon": 108.3247, "costMin": 100000, "costMax": 300000, "note": "소지품 주의"}]}, {"iso": "2026-08-26", "date": "8/26 수요일", "title": "호이안 2일차", "summary": "미꽝 · 카페 · 산책 · 마지막 저녁", "items": [{"time": "14:00", "name": "Mi Quang Ong Hai", "type": "점심", "address": "6A Truong Minh Luong, Hoi An, Vietnam", "lat": 15.879, "lon": 108.3372, "costMin": 40000, "costMax": 80000, "note": "닭고기 미꽝"}, {"time": "15:30", "name": "Ren Rua Cafe", "type": "카페", "address": "144 Nguyen Truong To, Hoi An, Vietnam", "lat": 15.8825, "lon": 108.3304, "costMin": 45000, "costMax": 90000, "note": "아메리카노 또는 시그니처"}, {"time": "16:30", "name": "호이안 올드타운", "type": "산책", "address": "Hoi An Ancient Town, Vietnam", "lat": 15.8765, "lon": 108.3273, "costMin": 0, "costMax": 0, "note": "전날 못 본 골목"}, {"time": "19:00", "name": "Aubergine49", "type": "저녁", "address": "49A Ly Thai To, Hoi An, Vietnam", "lat": 15.8862, "lon": 108.335, "costMin": 900000, "costMax": 1700000, "note": "스타터 + 메인 + 디저트"}]}, {"iso": "2026-08-27", "date": "8/27 목요일", "title": "귀국", "summary": "조식 · 공항 이동 · 출국", "items": [{"time": "08:30", "name": "다낭 국제공항", "type": "출국", "address": "Da Nang International Airport, Vietnam", "lat": 16.0439, "lon": 108.1994, "costMin": 180000, "costMax": 260000, "note": "11:45 출국편 기준"}]}];
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),fmt=n=>Math.round(Number(n)||0).toLocaleString('ko-KR')+'동';
+const wonRate=()=>Number(localStorage.getItem('vndRate')||5.5),toWon=v=>Math.round(Number(v||0)/100*wonRate());
+document.documentElement.dataset.theme=localStorage.getItem('theme')||'light';
+$('#themeBtn').onclick=()=>{const n=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=n;localStorage.setItem('theme',n);};
+function updateClock(){const now=new Date(),dep=new Date('2026-08-22T20:55:00+09:00'),diff=dep-now;$('#dday').textContent=diff>0?'D-'+Math.ceil(diff/86400000):'여행 중/완료';$('#danangClock').textContent=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);}setInterval(updateClock,30000);updateClock();
+function danangNow(){const p=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Ho_Chi_Minh',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return{iso:`${p.year}-${p.month}-${p.day}`,min:Number(p.hour)*60+Number(p.minute)};}
+function tmin(t){const m=t.match(/(\d{1,2}):(\d{2})/);return m?Number(m[1])*60+Number(m[2]):99999;}
+function emoji(t){if(/카페/.test(t))return'☕';if(/점심|저녁/.test(t))return'🍽️';if(/마사지/.test(t))return'💆';if(/공항|출국/.test(t))return'✈️';if(/쇼핑/.test(t))return'🛍️';if(/호텔|휴양/.test(t))return'🏨';return'📍';}
+function todayData(){const n=danangNow(),d=days.find(x=>x.iso===n.iso);return{n,d,di:d?days.indexOf(d):-1};}
+function nextPlace(){
+      const {n,d,di}=todayData();
+      if(d){
+        return d.items.find((x,i)=>localStorage.getItem(`done-${di}-${i}`)!=='1'&&tmin(x.time)>=n.min-60)
+          || d.items.find((x,i)=>localStorage.getItem(`done-${di}-${i}`)!=='1')
+          || null;
+      }
+      const upcoming=days.find(x=>x.iso>=n.iso);
+      return upcoming?upcoming.items[0]:null;
+    }
+let userLoc=null;
+function hav(a,b,c,d){const R=6371,r=x=>x*Math.PI/180,dp=r(c-a),dl=r(d-b),q=Math.sin(dp/2)**2+Math.cos(r(a))*Math.cos(r(c))*Math.sin(dl/2)**2;return R*2*Math.atan2(Math.sqrt(q),Math.sqrt(1-q));}
+function grabFare(km){return{lo:Math.round((15000+km*11000)*.85/1000)*1000,hi:Math.round((15000+km*11000)*1.2/1000)*1000};}
+function renderNext(){
+      const p=nextPlace();
+      if(!p){
+        $('#nextName').textContent='여행 준비';
+        $('#nextTime').textContent='다가오는 일정이 없어.';
+        $('#nextType').textContent='준비';
+        $('#nextIcon').textContent='🧳';
+        $('#nextDirections').href='#today';
+        $('#nextDirections').textContent='Google Maps 길찾기';
+        $('#nextStatus').textContent='출발 전';
+        $('#nextDone').disabled=true;
+        return;
+      }
+      const di=days.findIndex(day=>day.items.includes(p));
+      const d=days[di],ii=d.items.indexOf(p);
+      $('#nextName').textContent=p.name;
+      $('#nextTime').textContent=`${d.date} · ${p.time}`;
+      $('#nextType').textContent=p.type;
+      $('#nextIcon').textContent=emoji(p.type);
+      $('#nextStatus').textContent=d.iso>danangNow().iso?'예정 일정':'다음 장소';
+      $('#nextDirections').href=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(p.address)}&travelmode=driving`;
+      $('#nextDirections').target='_blank';
+      $('#nextDirections').textContent='Google Maps 길찾기';
+      $('#nextDone').disabled=false;
+      $('#nextDone').onclick=()=>{
+        localStorage.setItem(`done-${di}-${ii}`,'1');
+        const panel=$('#actualGrabPanel');
+        panel.style.display='block';
+        panel.dataset.from=userLoc?'현재 위치':'이전 장소';
+        panel.dataset.to=p.name;
+        renderAll();
+      };
+      if(userLoc){
+        const km=hav(userLoc.lat,userLoc.lon,p.lat,p.lon),f=grabFare(km);
+        $('#nextDistance').textContent=`직선 약 ${km.toFixed(1)}km`;
+        $('#nextGrab').innerHTML=`<b>${f.lo.toLocaleString()}~${f.hi.toLocaleString()}동</b><span>약 ${toWon(f.lo).toLocaleString()}~${toWon(f.hi).toLocaleString()}원 · 참고용</span>`;
+      }else{
+        $('#nextDistance').textContent='위치 확인 전';
+        $('#nextGrab').innerHTML='<b>Grab 예상요금</b><span>위치 기준을 선택하면 동·원화로 계산해.</span>';
+      }
+    }
+function renderToday(){const{d,di}=todayData();if(!d){$('#todayTitle').textContent='여행 전 미리보기';$('#todaySummary').textContent='여행 기간에는 당일 일정이 자동 표시돼.';$('#todayTimeline').innerHTML=days.map(x=>`<div class="timeline-item"><div class="timeline-time">${x.date.split(' ')[0]}</div><div><div class="timeline-title">${x.title}</div><div class="small">${x.summary}</div></div></div>`).join('');return;}$('#todayTitle').textContent=d.date+' · '+d.title;$('#todaySummary').textContent=d.summary;$('#todayTimeline').innerHTML=d.items.map((x,i)=>{const done=localStorage.getItem(`done-${di}-${i}`)==='1';const money=x.costMax?`${x.costMin.toLocaleString()}~${x.costMax.toLocaleString()}동 · 약 ${toWon(x.costMin).toLocaleString()}~${toWon(x.costMax).toLocaleString()}원`:'';return`<div class="timeline-item ${done?'done':''}"><div class="timeline-time">${x.time}</div><div><div class="timeline-title">${emoji(x.type)} ${x.name}</div><div class="small">${x.note}</div>${money?`<div class="money">${money}</div>`:''}<div class="timeline-actions"><a class="primary" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(x.address)}">길찾기</a><button class="secondary" onclick="toggleDone(${di},${i})">${done?'완료 취소':'방문 완료'}</button></div></div></div>`;}).join('');}
+window.toggleDone=(di,i)=>{
+  const k=`done-${di}-${i}`;
+  localStorage.setItem(k,localStorage.getItem(k)==='1'?'0':'1');
+  renderAll();
+  closeDaySummary();
+  renderTravelReport();
+  renderFxCalculator();
+};
+let expenses=JSON.parse(localStorage.getItem('expenses')||'[]');
+let grabRides=JSON.parse(localStorage.getItem('grabRides')||'[]');
+
+function saveExpenses(){
+  localStorage.setItem('expenses',JSON.stringify(expenses));
+  renderBudget();
+  closeDaySummary();
+  renderTravelReport();
+}
+function saveGrabRides(){
+  localStorage.setItem('grabRides',JSON.stringify(grabRides));
+  renderGrabRides();
+  renderBudget();
+  closeDaySummary();
+  renderTravelReport();
+}
+function renderExpenseList(){
+  const root=$('#expenseList');
+  if(!root)return;
+  root.className='record-list';
+  root.innerHTML=expenses.length?expenses.map((x,i)=>`
+    <div class="record-item">
+      <div><b>${x.memo||x.cat}</b><span>${x.cat} · ${Number(x.amount)>0?'+':''}${Number(x.amount).toLocaleString()}동 · 약 ${Number(x.amount)>0?'+':''}${toWon(x.amount).toLocaleString()}원</span></div>
+      <div class="record-actions"><button class="danger" onclick="deleteExpense(${i})">삭제</button></div>
+    </div>`).join(''):'<p class="small">아직 입력한 일반 경비가 없어.</p>';
+}
+window.deleteExpense=i=>{
+  expenses.splice(i,1);
+  saveExpenses();
+};
+
+function renderGrabRides(){
+  const root=$('#grabRideList');
+  const total=grabRides.reduce((s,x)=>s+Number(x.amount||0),0);
+  $('#grabCount').textContent=grabRides.length+'회';
+  $('#grabTotal').textContent=fmt(total);
+  $('#grabTotalKrw').textContent=toWon(total).toLocaleString()+'원';
+  if(!root)return;
+  root.className='record-list';
+  root.innerHTML=grabRides.length?grabRides.map((x,i)=>`
+    <div class="record-item">
+      <div><b>${x.from||'출발지'} → ${x.to||'도착지'}</b><span>${Number(x.amount).toLocaleString()}동 · 약 ${toWon(x.amount).toLocaleString()}원${x.memo?' · '+x.memo:''}</span></div>
+      <div class="record-actions"><button class="danger" onclick="deleteGrabRide(${i})">삭제</button></div>
+    </div>`).join(''):'<p class="small">아직 Grab 기록이 없어.</p>';
+}
+window.deleteGrabRide=i=>{
+  grabRides.splice(i,1);
+  saveGrabRides();
+};
+
+function renderBudget(){
+  const b=Number($('#totalBudget').value)||12000000;
+  localStorage.setItem('totalBudget',b);
+  const regular=expenses.reduce((a,x)=>a+Number(x.amount||0),0);
+  const grab=grabRides.reduce((a,x)=>a+Number(x.amount||0),0);
+  const s=regular+grab;
+  $('#spent').textContent=fmt(s);
+  $('#remaining').textContent=fmt(Math.max(0,b-s));
+  $('#spentKrw').textContent=toWon(s).toLocaleString()+'원';
+  $('#budgetBar').style.width=Math.min(100,b?Math.round(s/b*100):0)+'%';
+  renderExpenseList();
+}
+$('#totalBudget').value=localStorage.getItem('totalBudget')||12000000;
+$('#totalBudget').oninput=renderBudget;
+
+
+$('#addExpense').onclick=()=>{
+  const a=Number($('#expenseAmount').value);
+  if(!a)return alert('금액을 입력해줘.');
+  expenses.unshift({cat:$('#expenseCat').value,amount:a,memo:$('#expenseMemo').value.trim(),date:new Date().toISOString(),kind:'add'});
+  $('#expenseAmount').value='';
+  $('#expenseMemo').value='';
+  saveExpenses();
+};
+
+$('#subtractExpense').onclick=()=>{
+  const a=Number($('#expenseAmount').value);
+  if(!a)return alert('뺄 금액을 입력해줘.');
+  const memo=$('#expenseMemo').value.trim()||'경비 차감';
+  expenses.unshift({cat:$('#expenseCat').value,amount:-a,memo,date:new Date().toISOString(),kind:'subtract'});
+  $('#expenseAmount').value='';
+  $('#expenseMemo').value='';
+  saveExpenses();
+};
+
+$('#undoExpense').onclick=()=>{
+  if(!expenses.length)return alert('취소할 일반 경비 내역이 없어.');
+  expenses.shift();
+  saveExpenses();
+};
+
+
+$('#addGrabRide').onclick=()=>{
+  const amount=Number($('#grabAmount').value);
+  if(!amount)return alert('Grab 요금을 입력해줘.');
+  grabRides.unshift({
+    from:$('#grabFrom').value.trim(),
+    to:$('#grabTo').value.trim(),
+    amount,
+    memo:$('#grabMemo').value.trim(),
+    date:new Date().toISOString()
+  });
+  $('#grabFrom').value='';
+  $('#grabTo').value='';
+  $('#grabAmount').value='';
+  $('#grabMemo').value='';
+  saveGrabRides();
+};
+
+$('#clearGrabRides').onclick=()=>{
+  if(confirm('Grab 기록을 모두 삭제할까?')){
+    grabRides=[];
+    saveGrabRides();
+  }
+};
+
+$('#saveActualGrab').onclick=()=>{
+  const panel=$('#actualGrabPanel');
+  const amount=Number($('#actualGrabAmount').value);
+  if(!amount)return alert('실제 Grab 요금을 입력해줘.');
+  grabRides.unshift({
+    from:panel.dataset.from||'이전 장소',
+    to:panel.dataset.to||'다음 장소',
+    amount,
+    memo:'일정 완료 후 자동 기록',
+    date:new Date().toISOString()
+  });
+  $('#actualGrabAmount').value='';
+  panel.style.display='none';
+  saveGrabRides();
+};
+
+$('#skipActualGrab').onclick=()=>{
+  $('#actualGrabPanel').style.display='none';
+  $('#actualGrabAmount').value='';
+};
+
+$('#showGrabPanel').onclick=()=>{
+  const p=nextPlace();
+  if(!p)return alert('기록할 일정이 없어.');
+  const panel=$('#actualGrabPanel');
+  panel.style.display='block';
+  panel.dataset.from=userLoc?'현재 위치':'이전 장소';
+  panel.dataset.to=p.name;
+  panel.scrollIntoView({behavior:'smooth',block:'center'});
+};
+
+function setGpsStatus(message, success=false){
+  const el=$('#gpsStatus');
+  if(!el)return;
+  el.textContent='위치 기준: '+message;
+  el.style.color=success?'var(--accent)':'var(--muted)';
+}
+
+$('#locateBtn').onclick=()=>{
+  setGpsStatus('위치 확인 중… 최대 15초 정도 걸릴 수 있어.');
+
+  if(!window.isSecureContext){
+    setGpsStatus('보안 연결(https)이 아니라 위치를 사용할 수 없어.');
+    return;
+  }
+
+  if(!navigator.geolocation){
+    setGpsStatus('이 브라우저에서는 GPS를 지원하지 않아.');
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    position=>{
+      userLoc={
+        lat:position.coords.latitude,
+        lon:position.coords.longitude
+      };
+      const accuracy=Math.round(position.coords.accuracy||0);
+      setGpsStatus(`확인 완료 · 정확도 약 ${accuracy}m`, true);
+      renderNext();
+    },
+    error=>{
+      const messages={
+        1:'위치 권한이 거부됐어. Safari 위치 권한을 다시 확인해줘.',
+        2:'현재 위치를 확인할 수 없어. 잠시 후 다시 시도해줘.',
+        3:'위치 확인 시간이 초과됐어. 호텔 위치 버튼을 사용해도 돼.'
+      };
+      setGpsStatus(messages[error.code]||`위치 오류가 발생했어. 코드 ${error.code}`);
+    },
+    {
+      enableHighAccuracy:false,
+      timeout:15000,
+      maximumAge:300000
+    }
+  );
+};
+
+$('#useHotelLocation').onclick=()=>{
+  userLoc={lat:16.0042,lon:108.2635};
+  setGpsStatus('하얏트 리젠시 다낭 기준으로 계산 중이야.', true);
+  renderNext();
+};
+
+function dbOpen(){return new Promise((res,rej)=>{const r=indexedDB.open('lindaTravel5',1);r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('album'))db.createObjectStore('album',{keyPath:'id',autoIncrement:true});if(!db.objectStoreNames.contains('journal'))db.createObjectStore('journal',{keyPath:'id',autoIncrement:true});};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});}
+function fileData(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f);});}
+async function add(store,data){const db=await dbOpen();await new Promise((res,rej)=>{const t=db.transaction(store,'readwrite');t.objectStore(store).add(data);t.oncomplete=res;t.onerror=()=>rej(t.error);});}
+async function all(store){const db=await dbOpen();return new Promise((res,rej)=>{const r=db.transaction(store).objectStore(store).getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});}
+$('#saveAlbum').onclick=async()=>{const fs=[...$('#albumPhoto').files];if(!fs.length)return alert('사진을 골라줘.');for(const f of fs)await add('album',{date:$('#albumDate').value||danangNow().iso,photo:await fileData(f)});$('#albumPhoto').value='';renderAlbum();closeDaySummary();renderTravelReport();};
+async function renderAlbum(){const root=$('#albumList'),items=await all('album');if(!items.length){root.innerHTML='<p class="small">사진을 추가하면 날짜별로 자동 정리돼.</p>';return;}const g={};items.forEach(x=>(g[x.date]??=[]).push(x));const best=Number(localStorage.getItem('bestPhotoId')||0);root.innerHTML=Object.entries(g).sort().map(([d,list])=>`<div class="album-group"><h3>${d} · ${list.length}장</h3><div class="album-grid">${list.map(x=>`<div class="photo-wrap ${best===x.id?'best':''}"><img src="${x.photo}" onclick="setBest(${x.id})"></div>`).join('')}</div></div>`).join('');}
+window.setBest=id=>{
+  localStorage.setItem('bestPhotoId',id);
+  renderAlbum();
+  renderTravelReport();
+};
+
+function recordDate(x){return (x.date||'').slice(0,10);}
+function dayDoneItems(date){
+  const d=days.find(x=>x.iso===date);
+  if(!d)return [];
+  const di=days.indexOf(d);
+  return d.items.filter((x,i)=>localStorage.getItem(`done-${di}-${i}`)==='1');
+}
+function daySpend(date){
+  const regular=expenses.filter(x=>recordDate(x)===date).reduce((s,x)=>s+Number(x.amount||0),0);
+  const grab=grabRides.filter(x=>recordDate(x)===date).reduce((s,x)=>s+Number(x.amount||0),0);
+  return regular+grab;
+}
+async function closeDaySummary(){
+  const date=danangNow().iso;
+  const photos=(await all('album')).filter(x=>x.date===date);
+  const done=dayDoneItems(date);
+  $('#closeVisited').textContent=done.length+'곳';
+  $('#closeSpent').textContent=fmt(daySpend(date));
+  $('#closePhotos').textContent=photos.length+'장';
+  const saved=localStorage.getItem(`oneLine-${date}`)||'';
+  if(!$('#todayOneLine').value)$('#todayOneLine').value=saved;
+}
+async function buildDraft(){
+  const date=danangNow().iso;
+  const d=days.find(x=>x.iso===date);
+  const done=dayDoneItems(date);
+  const photos=(await all('album')).filter(x=>x.date===date);
+  const spent=daySpend(date);
+  const oneLine=$('#todayOneLine').value.trim();
+  const lines=[`${date} 여행 기록`];
+  if(done.length)lines.push(`오늘은 ${done.map(x=>x.name).join(' → ')}에 다녀왔다.`);
+  else if(d)lines.push(`오늘 일정은 ${d.items.map(x=>x.name).join(' → ')}였다.`);
+  if(spent)lines.push(`오늘 기록된 지출은 ${spent.toLocaleString()}동, 약 ${toWon(spent).toLocaleString()}원이다.`);
+  if(photos.length)lines.push(`사진은 ${photos.length}장을 남겼다.`);
+  if(oneLine)lines.push(`오늘의 한 줄: ${oneLine}`);
+  return{date,text:lines.join('\n')};
+}
+async function renderJournal(){
+  const root=$('#journalList');
+  const items=(await all('journal')).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+  root.innerHTML=items.length?items.map(x=>`
+    <div class="journal-item">
+      <b>${x.date}</b>
+      <div class="small" style="white-space:pre-wrap">${x.text}</div>
+    </div>`).join(''):'<p class="small">저장한 하루 기록은 여기에 쌓여.</p>';
+}
+$('#generateDraft').onclick=async()=>{
+  const d=await buildDraft();
+  $('#draftBox').textContent=d.text;
+  $('#draftBox').dataset.date=d.date;
+  localStorage.setItem(`oneLine-${d.date}`,$('#todayOneLine').value.trim());
+  closeDaySummary();
+};
+$('#saveDraft').onclick=async()=>{
+  const d=await buildDraft();
+  $('#draftBox').textContent=d.text;
+  $('#draftBox').dataset.date=d.date;
+  localStorage.setItem(`oneLine-${d.date}`,$('#todayOneLine').value.trim());
+  const db=await dbOpen();
+  const existing=(await all('journal')).find(x=>x.date===d.date);
+  await new Promise((res,rej)=>{
+    const t=db.transaction('journal','readwrite'),store=t.objectStore('journal');
+    if(existing)store.put({...existing,text:d.text,date:d.date});
+    else store.add({date:d.date,text:d.text});
+    t.oncomplete=res;t.onerror=()=>rej(t.error);
+  });
+  await renderJournal();
+  await renderTravelReport();
+  alert('오늘 하루를 저장했어.');
+};
+$$('input[type=checkbox][data-key]').forEach(c=>{
+  c.checked=localStorage.getItem(c.dataset.key)==='1';
+  c.onchange=()=>{
+    localStorage.setItem(c.dataset.key,c.checked?'1':'0');
+    updateQuest();
+    renderTravelReport();
+  };
+});
+function updateQuest(){
+  const q=[...$$('input[data-key^="quest-"]')];
+  $('#questTitle').textContent=`🎯 소소한 여행 퀘스트 · ${q.filter(x=>x.checked).length}/${q.length}`;
+}
+async function renderTravelReport(){
+  const visited=days.reduce((sum,d,di)=>sum+d.items.filter((x,i)=>localStorage.getItem(`done-${di}-${i}`)==='1').length,0);
+  const regular=expenses.reduce((s,x)=>s+Number(x.amount||0),0);
+  const grab=grabRides.reduce((s,x)=>s+Number(x.amount||0),0);
+  const quests=[...$$('input[data-key^="quest-"]')];
+  $('#reportVisited').textContent=visited+'곳';
+  $('#reportSpent').textContent=fmt(regular+grab);
+  $('#reportGrab').textContent=grabRides.length+'회';
+  $('#reportQuest').textContent=`${quests.filter(x=>x.checked).length}/${quests.length}`;
+  const album=await all('album');
+  const bestId=Number(localStorage.getItem('bestPhotoId')||0);
+  const best=album.find(x=>x.id===bestId);
+  $('#reportBestPhoto').innerHTML=best
+    ?`<div class="small" style="margin-bottom:7px">📸 Best Photo</div><img src="${best.photo}" alt="Best Photo">`
+    :'<p class="small">앨범에서 사진을 누르면 Best Photo가 여기에 보여.</p>';
+  const journals=(await all('journal')).sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+  $('#reportJournal').textContent=journals.length
+    ?journals.map(x=>`${x.date}\n${x.text.split('\n').slice(1).join('\n')}`).join('\n\n')
+    :'저장한 하루 기록이 쌓이면 여기에 여행 요약이 보여.';
+}
+$('#refreshReport').onclick=renderTravelReport;
+
+function isTripDate(){
+  const today=danangNow().iso;
+  return today>='2026-08-22' && today<='2026-08-27';
+}
+
+function autoChooseLocation(){
+  if(isTripDate()){
+    setGpsStatus('여행 중이라 현재 위치를 자동 확인하고 있어.');
+    if(!navigator.geolocation){
+      userLoc={lat:16.0042,lon:108.2635};
+      setGpsStatus('GPS를 지원하지 않아 호텔 기준으로 계산 중이야.',true);
+      renderNext();
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      position=>{
+        userLoc={lat:position.coords.latitude,lon:position.coords.longitude};
+        setGpsStatus(`현재 위치 자동 사용 중 · 정확도 약 ${Math.round(position.coords.accuracy||0)}m`,true);
+        renderNext();
+      },
+      ()=>{
+        userLoc={lat:16.0042,lon:108.2635};
+        setGpsStatus('현재 위치를 못 잡아서 호텔 기준으로 계산 중이야.',true);
+        renderNext();
+      },
+      {enableHighAccuracy:false,timeout:12000,maximumAge:300000}
+    );
+  }else{
+    userLoc={lat:16.0042,lon:108.2635};
+    setGpsStatus('여행 전이라 하얏트 리젠시 다낭 기준으로 계산 중이야.',true);
+    renderNext();
+  }
+}
+
+function renderAll(){renderNext();renderToday();renderBudget();renderGrabRides();updateQuest();}
+renderAll();
+autoChooseLocation();
+renderAlbum();
+closeDaySummary();
+renderJournal();
+renderTravelReport();
+
+
+function weatherEmoji(code){
+  if(code===0)return '☀️';
+  if([1,2].includes(code))return '🌤️';
+  if(code===3)return '☁️';
+  if([45,48].includes(code))return '🌫️';
+  if(code>=51&&code<=67)return '🌧️';
+  if(code>=80&&code<=82)return '🌦️';
+  if(code>=95)return '⛈️';
+  return '🌴';
+}
+function weatherLabel(code){
+  if(code===0)return '맑음';
+  if([1,2].includes(code))return '구름 조금';
+  if(code===3)return '흐림';
+  if([45,48].includes(code))return '안개';
+  if(code>=51&&code<=67)return '비';
+  if(code>=80&&code<=82)return '소나기';
+  if(code>=95)return '뇌우';
+  return '날씨 정보';
+}
+async function loadWeather(){
+  try{
+    const url='https://api.open-meteo.com/v1/forecast?latitude=16.0544&longitude=108.2022&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&hourly=precipitation_probability&forecast_days=1&timezone=Asia%2FHo_Chi_Minh';
+    const res=await fetch(url);
+    if(!res.ok)throw new Error('weather');
+    const data=await res.json(),c=data.current;
+    const hour=new Date(c.time).getHours();
+    const idx=data.hourly.time.findIndex(x=>new Date(x).getHours()===hour);
+    const rain=idx>=0?(data.hourly.precipitation_probability[idx]??0):0;
+    $('#weatherIcon').textContent=weatherEmoji(c.weather_code);
+    $('#weatherTitle').textContent=`다낭 · ${weatherLabel(c.weather_code)}`;
+    $('#weatherDetail').textContent=`체감 ${Math.round(c.apparent_temperature)}° · 바람 ${Math.round(c.wind_speed_10m)}km/h · ${rain>=40?'우산 추천':'우산 없이 괜찮아 보여'}`;
+    $('#weatherTemp').textContent=Math.round(c.temperature_2m)+'°';
+    $('#weatherRain').textContent='비 '+rain+'%';
+  }catch(e){
+    $('#weatherTitle').textContent='다낭 날씨를 불러오지 못했어';
+    $('#weatherDetail').textContent='잠시 후 새로고침하면 다시 시도해.';
+  }
+}
+loadWeather();
+
+
+const FX_CACHE_KEY='linda-fx-vnd-krw';
+const FX_CACHE_MS=24*60*60*1000;
+
+function applyFx(rate, updatedText=''){
+  if(!Number.isFinite(rate)||rate<=0)return;
+  wonRate=rate*100;
+  $('#exchangeRate').textContent=`1,000동 = ${Math.round(rate*1000).toLocaleString()}원`;
+  $('#exchangeHint').textContent=updatedText||'경비·Grab 원화 환산에도 자동 적용';
+  renderBudget();
+  renderNext();
+  renderTravelReport();
+}
+
+async function loadExchangeRate(){
+  try{
+    const cached=JSON.parse(localStorage.getItem(FX_CACHE_KEY)||'null');
+    if(cached&&Date.now()-cached.savedAt<FX_CACHE_MS&&Number.isFinite(cached.rate)){
+      applyFx(cached.rate,'오늘 환율 · 경비 환산에 자동 적용');
+      return;
+    }
+  }catch(e){}
+
+  try{
+    const res=await fetch('https://open.er-api.com/v6/latest/VND');
+    if(!res.ok)throw new Error('fx');
+    const data=await res.json();
+    const rate=Number(data?.rates?.KRW);
+    if(data?.result!=='success'||!Number.isFinite(rate))throw new Error('fx-data');
+    localStorage.setItem(FX_CACHE_KEY,JSON.stringify({rate,savedAt:Date.now(),sourceUpdated:data.time_last_update_utc||''}));
+    applyFx(rate,'최신 환율 · 경비 환산에 자동 적용');
+  }catch(e){
+    const fallback=0.055;
+    applyFx(fallback,'실시간 환율 실패 · 기본 환율 적용');
+  }
+}
+loadExchangeRate();
+
+function renderFxCalculator(){
+  const input=$('#fxVndInput');
+  const result=$('#fxResult');
+  if(!input||!result)return;
+  const amount=Number(input.value||0);
+  if(!amount){
+    result.textContent='동 금액을 입력하면 원화로 바로 보여줘.';
+    return;
+  }
+  const won=Math.round(toWon(amount));
+  result.innerHTML=`${amount.toLocaleString()}동 ≈ ${won.toLocaleString()}원 <span>· 현재 적용 환율 기준</span>`;
+}
+$('#fxVndInput').addEventListener('input',renderFxCalculator);
+$('#fxClearBtn').onclick=()=>{
+  $('#fxVndInput').value='';
+  renderFxCalculator();
+};
+
+
+
+const patchToggle=$('#patchToggle');
+const patchBody=$('#patchBody');
+function setPatchOpen(open){
+  patchBody.classList.toggle('open',open);
+  patchToggle.setAttribute('aria-expanded',open?'true':'false');
+  localStorage.setItem('patchOpen',open?'1':'0');
+}
+if(patchToggle&&patchBody){
+  setPatchOpen(localStorage.getItem('patchOpen')==='1');
+  patchToggle.onclick=()=>setPatchOpen(patchToggle.getAttribute('aria-expanded')!=='true');
+}
+
+</script>
+</body></html>
